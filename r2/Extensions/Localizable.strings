@@ -1,0 +1,30 @@
+/* 
+  PrideStrings.strings
+  Pride
+
+  Created by Rauf Shaikh on 4/16/17.
+  Copyright © 2017 NonStop io. All rights reserved.
+*/
+
+"Feed_Server_Error" = "Apologies. The feed could not be retrieved. Please try again";
+"No_Internet_Server_Error" = "Please connect to an active internet connection and try again";
+"Edit_Profile_Server_Error" = "Apologies. Your updates could not be saved. Please try again";
+"Notifications_Server_Error" = "Apologies. The notifications could not be retrieved. Please try again";
+"Edit_Profile_Success" = "Profile changes successfully saved";
+"Generic_Server_Error" = "Apologies. We are facing some retreiving data. Please try again";
+"Emote_Already_Present_Error" = "We've already registered this emote. Thanks :-)";
+"loadingdata" = "Loading...Please Wait";
+"Generic_Error_Title" = "Something went wrong! :(";
+"Profile_Info_Error" = "Your profile info is already available with us. Please make sure that you're not logged in from another device";
+"Updating_Emoji" = "Updating Emoji.";
+"Circles_Add_Msg" = "(Click 'Edit Profile' to update your circles)";
+"Choose_Circles_Alert_Msg" = "Are you sure you have selected all the circles of your interest? if not, then press cancel and select the circles.\n\nYou can always edit your circles from your Profile section";
+"NewPostTitle" = "Type your post title here";
+"NewPostDesc" = "Type your post here...type as much as you can!";
+"ConnectedToNetworkStatus" = "Internet Connection not Available!";
+"ConnectedToNetworkMessage" = "Please connect to internet and try again";
+"Invalid_User_Error" = "Dear LifeSchooler, You may have registered to the App from another mobile device using the same phone number. If the current mobile device is going to be your primary device, then please uninstall the App, and reinstall it again";
+"NewPostImgTostMsg" = "Please Select image";
+"NewPostDiscriptionTostMsg" = "Please Add discription";
+"NewPostTitleTostMsg" = "Please Add Title";
+
