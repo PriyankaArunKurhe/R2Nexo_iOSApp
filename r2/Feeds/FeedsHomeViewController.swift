@@ -345,12 +345,12 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         let para = ["data": "{\"mobile\":\"9420871066\",\"password\":\"56147180661\",\"page_no\":\"1\"}"]
         
         let r2_URL = "\(Constants.r2_baseURL)\("/")\(apiName)\("/")"
-        Alamofire.request(r2_URL, method: .post, parameters: para , headers: nil).responseJSON {
+        AF.request(r2_URL, method: .post, parameters: para , headers: nil).responseJSON {
             response in
             switch response.result {
             case .success:
                 print("response: ",response)
-                let swiftyJsonVar = JSON(response.result.value!)
+                let swiftyJsonVar = JSON(response.value!)
                 if let resData = swiftyJsonVar["posts"].arrayObject {
                     self.postsDict = resData as! [[String:AnyObject]]
                 }

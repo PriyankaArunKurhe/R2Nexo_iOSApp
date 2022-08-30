@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import UserNotifications
 import Pushy
-import Crashlytics
 
 
 @UIApplicationMain
@@ -25,9 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         
         FirebaseApp.configure()
-        
         Fabric.sharedSDK().debug = true
-        
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedStringKey.font: UIFont(name: Constants.r2_semi_bold_font, size: 19)!, NSAttributedStringKey.foregroundColor : UIColor.white
         ]

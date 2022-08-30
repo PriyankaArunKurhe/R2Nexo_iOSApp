@@ -10,15 +10,15 @@ target 'r2' do
   
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'SDWebImage', '~>3.8'
+  pod 'SDWebImage'
   pod 'YouTubePlayer'
   pod 'NVActivityIndicatorView'
   pod 'Firebase/Core'
-  pod 'Fabric', '~> 1.7.2'
-  pod 'Crashlytics', '~> 3.9.3'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Pushy', '1.0.11'
 #  pod 'SwiftOCR'
-#  pod 'TesseractOCRiOS', '3.04.0'
+#  pod 'TesseractOCRiOS'
 
   # pod 'Hero'
 
