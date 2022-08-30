@@ -18,10 +18,10 @@ class DashboardMenuCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        menuTitleLabel.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size-4))
+        menuTitleLabel.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size - 4))
         menuTitleLabel.textColor = UIColor.white
         
-        menuStatusCountLabel.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size-4))
+        menuStatusCountLabel.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size - 4))
         menuStatusCountLabel.textColor = UIColor.white
         
 //        quizeCreatedTimeLbl.textColor = UIColor.r2_Sub_Text_Color

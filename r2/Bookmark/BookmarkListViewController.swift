@@ -119,7 +119,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         {
             if !isDataLoading{
                 isDataLoading = true
-                self.pageNumber=self.pageNumber+1
+                self.pageNumber=self.pageNumber + 1
                 print("Page number \(self.pageNumber)")
                 self.get_Posts(pageNo:self.pageNumber)
             }
@@ -348,7 +348,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             
 //            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
 //            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String!)!) as String
+            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
                 data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
                 options:[.documentType: NSAttributedString.DocumentType.html,
@@ -397,7 +397,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
 //        cell.feedPostedDescLabel.text = dictObj["text"] as? String
 //        cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
         
-        let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String!)!) as String
+        let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
         let attrStr = try! NSAttributedString(
             data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
             options:[.documentType: NSAttributedString.DocumentType.html,

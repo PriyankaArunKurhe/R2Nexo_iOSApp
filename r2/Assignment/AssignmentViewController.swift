@@ -165,7 +165,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         print("\n Assignment Dic",self.AssignmentDicObj)
         
         if  AssignmentDicObj["has_video"] as! String == "False" && AssignmentDicObj["has_img"] as! String == "False" {
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String!)!) as String
+            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
                 data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
                 options:[.documentType: NSAttributedString.DocumentType.html,
@@ -179,7 +179,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }
         
         
-        let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String!)!) as String
+        let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String)!) as String
         let attrStr = try! NSAttributedString(
             data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
             options:[.documentType: NSAttributedString.DocumentType.html,

@@ -345,12 +345,12 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         let para = ["data": "{\"mobile\":\"9420871066\",\"password\":\"56147180661\",\"page_no\":\"1\"}"]
         
         let r2_URL = "\(Constants.r2_baseURL)\("/")\(apiName)\("/")"
-        AF.request(r2_URL, method: .post, parameters: para , headers: nil).responseJSON {
+        AF.request(r2_URL, method: .post, parameters: para , headers: nil).response {
             response in
             switch response.result {
             case .success:
                 print("response: ",response)
-                let swiftyJsonVar = JSON(response.value!)
+                let swiftyJsonVar = JSON(response.value! as Any)
                 if let resData = swiftyJsonVar["posts"].arrayObject {
                     self.postsDict = resData as! [[String:AnyObject]]
                 }
@@ -391,7 +391,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
 //            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
 //            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
             
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String!)!) as String
+            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
                 data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
                 options:[.documentType: NSAttributedString.DocumentType.html,
