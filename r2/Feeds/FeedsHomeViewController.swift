@@ -452,7 +452,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
 //            cell.feedPostedDescLabel.text = dictObj["text"] as? String
 //            cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
         
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String!)!) as String
+            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
                 data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
                 options:[.documentType: NSAttributedString.DocumentType.html,

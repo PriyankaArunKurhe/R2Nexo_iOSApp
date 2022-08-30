@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FirebaseApp.configure()
         Fabric.sharedSDK().debug = true
+        
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedStringKey.font: UIFont(name: Constants.r2_semi_bold_font, size: 19)!, NSAttributedStringKey.foregroundColor : UIColor.white
         ]
