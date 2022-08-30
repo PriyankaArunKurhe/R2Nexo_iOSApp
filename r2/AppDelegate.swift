@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import UserNotifications
 import Pushy
-
+import Crashlytics
+import Fabric
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
