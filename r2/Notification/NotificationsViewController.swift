@@ -35,7 +35,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         self.view.addGestureRecognizer(leftGesture)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         
         getNotifications()
@@ -106,7 +106,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
             cell.NotifImageView.sd_setImage(with: URL(string: notifImageURL), placeholderImage: UIImage(named: "default_image.png"))
         }
         
-        cell.NotifImageView.contentMode = UIViewContentMode.scaleAspectFill
+        cell.NotifImageView.contentMode = UIView.ContentMode.scaleAspectFill
         
         
         

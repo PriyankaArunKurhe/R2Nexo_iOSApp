@@ -33,7 +33,7 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
         self.view.addGestureRecognizer(rightGesture)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         self.getApplicationList()
         // Do any additional setup after loading the view.
@@ -58,9 +58,9 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -113,8 +113,8 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
                 score = (ApplicationObj["score"] as? String)!
                 cell.quizScoreLabel.text = "You have scored \(score) points in this."
                 let string = "You have scored \(score) points in this Application" as NSString
-                let attributedString = NSMutableAttributedString(string: string as String, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 15.0)])
-                let boldFontAttribute = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15.0)]
+                let attributedString = NSMutableAttributedString(string: string as String, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15.0)])
+                let boldFontAttribute = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15.0)]
                 attributedString.addAttributes(boldFontAttribute, range: string.range(of: score))
                 cell.quizScoreLabel.attributedText = attributedString
             }

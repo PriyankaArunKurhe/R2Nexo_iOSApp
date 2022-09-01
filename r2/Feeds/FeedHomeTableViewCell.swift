@@ -77,7 +77,7 @@ class FeedHomeTableViewCell: UITableViewCell {
         
 //        feedPostedByProfilePic.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleBottomMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue) | UInt8(UIViewAutoresizing.flexibleRightMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleLeftMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleTopMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleWidth.rawValue)))
         
-        feedPostedByProfilePic.contentMode = UIViewContentMode.scaleAspectFill
+        feedPostedByProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
         feedPostedByProfilePic.layer.cornerRadius = feedPostedByProfilePic.frame.size.width / 2
         feedPostedByProfilePic.clipsToBounds = true
         

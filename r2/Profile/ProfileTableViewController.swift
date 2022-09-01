@@ -117,7 +117,7 @@ class ProfileTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 if statusVal == "success"{
                     self.activityProgress.stopAnimating()
-                    self.profileDict = ResDictionary["data"] as! NSDictionary
+                    self.profileDict = (ResDictionary["data"] as! NSDictionary)
                     print("\n \n PPP ",self.profileDict["student_first_name"] as! String)
 
                     let fullName = "\(self.profileDict["student_first_name"] as! String) \(self.profileDict["student_last_name"] as! String)"

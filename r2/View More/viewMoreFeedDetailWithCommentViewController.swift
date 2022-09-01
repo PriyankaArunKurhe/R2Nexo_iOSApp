@@ -45,13 +45,13 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         // loader
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.style = UIActivityIndicatorView.Style.UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating()
         alertLoader.view.addSubview(loadingIndicator)
 //        present(alertLoader, animated: true, completion: nil)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
 //        commentBoxView.layer.borderColor = UIColor.black.cgColor
 //        commentBoxView.layer.borderWidth = 0
@@ -60,8 +60,8 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
 
         
 //        self.hideKeyboardWhenTappedAround()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIResponder.keyboardWillHideNotification, object: nil)
         self.tableView.backgroundColor = UIColor(red:240/255.0,green:240/255.0,blue:240/255.0,alpha:1.0)
         
         self.getFeedDeatil(postId: UserDefaults.standard.string(forKey: "postID")! as String)
@@ -93,7 +93,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             if self.view.frame.origin.y == 0.0 {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
@@ -104,7 +104,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if ___: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             
 //            let keyboardRectangle = keyboardFrame.cgRectValue
 //            let keyboardHeight = keyboardRectangle.height
@@ -119,21 +119,21 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         
         let imageView = sender.view as! UIImageView
         let zoomVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoomImageCtrlrVwSID") as! ZoomImageViewController
-        self.addChildViewController(zoomVC)
+        self.addChild(zoomVC)
 //        zoomVC.view.frame.origin.y = tableView.contentOffset.y
         zoomVC.view.frame.origin.y = self.view.frame.origin.y+(self.navigationController?.navigationBar.frame.size.height)!
         zoomVC.view.frame.size.height = self.view.frame.size.height - 50.0
         zoomVC.zoomImageScrollView.display(image: imageView.image!)
         self.view.addSubview(zoomVC.view)
-        zoomVC.didMove(toParentViewController: self)
+        zoomVC.didMove(toParent: self)
     }
     
     func addDoneButtonOnKeyboard()
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
@@ -153,7 +153,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             // Dragging down
             print("\n Dragging down")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                UIViewAnimationOptions.curveEaseOut, animations: {
+                            UIView.AnimationOptions.curveEaseOut, animations: {
                     self.navigationController?.isNavigationBarHidden = false
                     UIApplication.shared.isStatusBarHidden = false
                     
@@ -165,7 +165,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             // Dragging up
             print("\n Dragging up")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                UIViewAnimationOptions.curveEaseOut, animations: {
+                            UIView.AnimationOptions.curveEaseOut, animations: {
                     self.navigationController?.isNavigationBarHidden = true
                     UIApplication.shared.isStatusBarHidden = true
             }, completion: { finished in
@@ -210,7 +210,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections-1)
             if numberOfRows > 0 {
                 let indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
-                self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: animated)
+                self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.bottom, animated: animated)
             }
         }
     }
@@ -235,7 +235,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = heightDictionary[indexPath.row]
-        return height ?? UITableViewAutomaticDimension
+        return height ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -417,7 +417,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
                 let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = self.view
-                activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
                 self.present(activityViewController, animated: true, completion: nil)
                 
                 
@@ -437,9 +437,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     @IBAction func BackButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
     }
@@ -451,9 +451,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         

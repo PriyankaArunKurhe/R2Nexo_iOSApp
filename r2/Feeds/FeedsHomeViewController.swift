@@ -52,7 +52,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
 
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
     }
     
@@ -70,8 +70,8 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Internet Connection not Available!",
                                           message: "Please connect with internet and try again",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -137,7 +137,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             // Dragging down
             print("\n Dragging down")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                UIViewAnimationOptions.curveEaseOut, animations: {
+                            UIView.AnimationOptions.curveEaseOut, animations: {
                     self.navigationController?.isNavigationBarHidden = false
                     UIApplication.shared.isStatusBarHidden = false
                     self.tabBarController?.tabBar.isHidden = false
@@ -150,7 +150,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             // Dragging up
             print("\n Dragging up")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                UIViewAnimationOptions.curveEaseOut, animations: {
+                            UIView.AnimationOptions.curveEaseOut, animations: {
                     self.navigationController?.isNavigationBarHidden = true
                     UIApplication.shared.isStatusBarHidden = true
                     self.tabBarController?.tabBar.isHidden = true
@@ -227,7 +227,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                                 }
                                 print("Current post dict count: \(currentPostDictCount)")
                                 if (pageNo == 1) {
-                                    self.postsDict =  (self.PostListDic?["data"] as! NSArray!) as! [Any]
+                                    self.postsDict =  (self.PostListDic?["data"] as! NSArray?) as! [Any]
                                     postDictUpdated = true
                                 } else {
                                     let new_entries = self.PostListDic?["data"] as! [Any]
@@ -271,11 +271,11 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 } catch let error as NSError {
                     print(error)
                     DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Error ! Well, this is embarrassing. \n We are sorry-something has gone wrong.\n We would like to fix it for you so this does not happen again", message: "", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Try Later", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        let alert = UIAlertController(title: "Error ! Well, this is embarrassing. \n We are sorry-something has gone wrong.\n We would like to fix it for you so this does not happen again", message: "", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Try Later", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             
                         }))
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             
                         }))
                         self.present(alert, animated: true, completion: nil)
@@ -372,7 +372,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = heightDictionary[indexPath.row]
-        return height ?? UITableViewAutomaticDimension
+        return height ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -586,8 +586,8 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             if (error != nil) {
                 print(error as Any)
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 
@@ -666,7 +666,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
                 let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = self.view
-                activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
                 self.present(activityViewController, animated: true, completion: nil)
                 
                 

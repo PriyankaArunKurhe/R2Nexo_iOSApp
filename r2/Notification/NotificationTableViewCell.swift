@@ -17,7 +17,7 @@ class NotificationTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        NotifImageView.contentMode = UIViewContentMode.scaleToFill
+        NotifImageView.contentMode = UIView.ContentMode.scaleToFill
         NotifImageView.layer.cornerRadius = NotifImageView.frame.size.width / 2
         NotifImageView.clipsToBounds = true
         NotifTimeLabel.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size-5))

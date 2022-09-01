@@ -55,7 +55,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
         
         self.view.addGestureRecognizer(rightGesture)
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         
         if isRankingListTable {
@@ -268,7 +268,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
 //                self.presentAlertWithOkButton(withTitle: "Boost now!!", message: "(This feature is coming soon)")
                 
                 let popOverVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoostMeProgressSID") as! BoostMeProgrssViewViewController;                UIApplication.shared.keyWindow?.addSubview(popOverVC.view)
-                popOverVC.didMove(toParentViewController: self)
+                popOverVC.didMove(toParent: self)
                 
             }
         }

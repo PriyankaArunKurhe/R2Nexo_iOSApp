@@ -66,7 +66,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         
         print("\n profile pic url from user default ",UserDefaults.standard.string(forKey: "user_profile_pic_URL")! as String)
         
-        dashboardProfileImageView.contentMode = UIViewContentMode.scaleAspectFill
+        dashboardProfileImageView.contentMode = UIView.ContentMode.scaleAspectFill
         dashboardProfileImageView.layer.cornerRadius = dashboardProfileImageView.frame.size.width / 2
         dashboardProfileImageView.clipsToBounds = true
         
@@ -76,14 +76,14 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         let height = UIScreen.main.bounds.size.height
         let imageViewBackground = UIImageView(frame: CGRect(x:0, y:0, width: width, height: height))
         imageViewBackground.image = UIImage(named: "dashboard_background")
-        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.addSubview(imageViewBackground)
-        self.view.sendSubview(toBack: imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
         
-        let attrs : [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_semi_bold_font, size: 22)!,
-            NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue]
+        let attrs : [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_semi_bold_font, size: 22)!,
+            NSAttributedString.Key.foregroundColor : UIColor.white,
+            NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: "Leaderboard",
                                                         attributes: attrs)
         leaderboardlabel.attributedText = attributeString
@@ -225,10 +225,10 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
 //        DMcell.layer.borderColor = UIColor.red.cgColor
         DMcell.menuTitleLabel.text = self.menuTitleArr[indexPath.row]
         
-        let attrs : [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_semi_bold_font, size: 10)!,
-            NSAttributedStringKey.foregroundColor : UIColor.r2_skyBlue,
-            NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue]
+        let attrs : [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_semi_bold_font, size: 10)!,
+            NSAttributedString.Key.foregroundColor : UIColor.r2_skyBlue,
+            NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: self.menuDonowArr[indexPath.row],
                                                         attributes: attrs)
         DMcell.menuDoNowLabel.attributedText = attributeString
@@ -410,7 +410,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         let popOverVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoostMeProgressSID") as! BoostMeProgrssViewViewController
 //        self.view.addSubview(popOverVC.view)
         UIApplication.shared.keyWindow?.addSubview(popOverVC.view)
-        popOverVC.didMove(toParentViewController: self)
+        popOverVC.didMove(toParent: self)
 
 //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MeditatinViewControllerSID") as! MeditationViewController
 //        self.present(vc, animated: true, completion: nil)

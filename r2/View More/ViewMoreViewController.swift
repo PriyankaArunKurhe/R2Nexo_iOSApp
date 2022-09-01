@@ -30,7 +30,7 @@ class ViewMoreViewController: UIViewController,UITableViewDelegate,UITableViewDa
 //        commentTableView.frame = CGRect(x: commentTableView.frame.origin.x, y: commentTableView.frame.origin.y, width: commentTableView.frame.size.width, height: commentTableView.contentSize.height)
         
         commentTableViewHeightOutlet.constant = commentTableView.contentSize.height
-        self.commentTableView.scrollToRow(at: IndexPath (row:99,section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+        self.commentTableView.scrollToRow(at: IndexPath (row:99,section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,9 +68,9 @@ class ViewMoreViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
     }

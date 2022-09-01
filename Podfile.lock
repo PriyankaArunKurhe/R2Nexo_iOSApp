@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (5.6.2)
+  - CocoaAsyncSocket (7.6.5)
+  - CocoaMQTT (2.0.5):
+    - CocoaMQTT/Core (= 2.0.5)
+  - CocoaMQTT/Core (2.0.5):
+    - CocoaAsyncSocket (~> 7.6.5)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
@@ -95,7 +100,8 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (2.1.1)
-  - Pushy (1.0.11)
+  - Pushy (1.0.38):
+    - CocoaMQTT (= 2.0.5)
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
@@ -108,7 +114,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core
   - NVActivityIndicatorView
-  - Pushy (= 1.0.11)
+  - Pushy
   - SDWebImage
   - SwiftyJSON
   - YouTubePlayer
@@ -116,6 +122,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CocoaAsyncSocket
+    - CocoaMQTT
     - Crashlytics
     - Fabric
     - Firebase
@@ -137,6 +145,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  CocoaMQTT: a39eea0119ceb0e72f071b082c3677bd6c347d89
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   Firebase: 800f16f07af493d98d017446a315c27af0552f41
@@ -151,11 +161,11 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  Pushy: c1c433d72655f2e125309a63b6768417d4d5ffd1
+  Pushy: 9deaccfb9f816ef1987ef9316d1440e37221c938
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 98548336c8bdf25d9b080fbf0e591540b324cfef
+PODFILE CHECKSUM: 3d0018b329eace46bbe45adce8c5211c20b9d398
 
 COCOAPODS: 1.11.3

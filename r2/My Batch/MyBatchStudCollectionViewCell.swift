@@ -20,7 +20,7 @@ class MyBatchStudCollectionViewCell: UICollectionViewCell {
         self.layer.borderWidth = 1.0
         self.layer.borderColor = UIColor.r2_faintGray.cgColor
         
-        batchStudImageView.contentMode = UIViewContentMode.scaleAspectFill
+        batchStudImageView.contentMode = UIView.ContentMode.scaleAspectFill
         batchStudImageView.layer.cornerRadius = batchStudImageView.frame.size.width / 2
         batchStudImageView.clipsToBounds = true
         

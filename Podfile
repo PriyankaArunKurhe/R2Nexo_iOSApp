@@ -16,7 +16,7 @@ target 'r2' do
   pod 'Firebase/Core'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'Pushy', '1.0.11'
+  pod 'Pushy'
 #  pod 'SwiftOCR'
 #  pod 'TesseractOCRiOS'
 

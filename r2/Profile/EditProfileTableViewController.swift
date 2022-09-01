@@ -38,10 +38,10 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         self.activityProgress.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.50)
         self.view.addSubview(activityProgress)
         imagePicker.delegate = self
-        ProfileImageView.contentMode = UIViewContentMode.scaleAspectFill
+        ProfileImageView.contentMode = UIView.ContentMode.scaleAspectFill
         ProfileImageView.layer.cornerRadius = ProfileImageView.frame.size.width / 2
         ProfileImageView.clipsToBounds = true
-        ProfileImageView.contentMode = UIViewContentMode.scaleToFill
+        ProfileImageView.contentMode = UIView.ContentMode.scaleToFill
         userProfileEmailIDTextField.isEnabled = false
         submitCellView.backgroundColor = UIColor.r2_Tab_Bar_Color
         self.getProfileInfo()
@@ -72,9 +72,9 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -103,7 +103,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                                      didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         var  chosenImage = UIImage()
-        chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        chosenImage = info[UIImagePickerControllerOriginalImage.rawValue] as! UIImage
         ProfileImageView.contentMode = .scaleAspectFill
         ProfileImageView.image = chosenImage
         dismiss(animated:true, completion: nil)
@@ -134,7 +134,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                     self.userProfileEmailIDTextField.text = self.userName
                     let profileImageURL = "\(Constants.r2_baseURL)/\(self.profileDict["student_picture_url"] as! String)"
                     self.ProfileImageView.downloadedFrom(url: URL(string: profileImageURL)!)
-                    self.ProfileImageView.contentMode = UIViewContentMode.scaleAspectFill
+                    self.ProfileImageView.contentMode = UIView.ContentMode.scaleAspectFill
                     let comapnyImageURL = "\(Constants.r2_baseURL)/\(self.profileDict["company_image"] as! String)"
                     self.batchComanyImage.downloadedFrom(url: URL(string: comapnyImageURL)!)
                     
@@ -164,7 +164,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         
         let imageProfCompressed = self.ProfileImageView.image?.resizeWith(width: 380)
-        let imageProf = UIImagePNGRepresentation(imageProfCompressed!)
+        let imageProf = imageProfCompressed!.pngData()
         var imageProfStr = imageProf?.base64EncodedString()
         imageProfStr = imageProfStr?.replacingOccurrences(of: " ", with: "\n")
         
@@ -335,9 +335,9 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
      @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+         transition.type = CATransitionType.reveal
+         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
         

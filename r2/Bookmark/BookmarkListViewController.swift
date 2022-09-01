@@ -49,7 +49,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
     }
     
@@ -67,8 +67,8 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Internet Connection not Available!",
                                           message: "Please connect with internet and try again",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -104,9 +104,9 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -196,7 +196,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                                 }
                                 print("Current post dict count: \(currentPostDictCount)")
                                 if (pageNo == 1) {
-                                    self.postsDict =  (self.PostListDic?["data"] as! NSArray!) as! [Any]
+                                    self.postsDict =  (self.PostListDic?["data"] as! NSArray?) as! [Any]
                                     postDictUpdated = true
                                 } else {
                                     let new_entries = self.PostListDic?["data"] as! [Any]
@@ -216,8 +216,8 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                                 
                                 if self.postsDict.count == 0{
                                     DispatchQueue.main.async {
-                                        let alert = UIAlertController(title: "No Bookmarks Found", message: "you can bookmark feeds from Feeds list", preferredStyle: UIAlertControllerStyle.alert)
-                                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                                        let alert = UIAlertController(title: "No Bookmarks Found", message: "you can bookmark feeds from Feeds list", preferredStyle: UIAlertController.Style.alert)
+                                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                                             self.dismiss(animated: true, completion: nil)
                                         }))
                                         self.present(alert, animated: true, completion: nil)
@@ -251,11 +251,11 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                 } catch let error as NSError {
                     print(error)
                     DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Error ! Well, this is embarrassing. \n We are sorry-something has gone wrong. Can you let us know how this happened with an SMS? \n\n We would like to fix it for you so this does not happen again", message: "", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Try Later", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        let alert = UIAlertController(title: "Error ! Well, this is embarrassing. \n We are sorry-something has gone wrong. Can you let us know how this happened with an SMS? \n\n We would like to fix it for you so this does not happen again", message: "", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Try Later", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             
                         }))
-                        alert.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        alert.addAction(UIAlertAction(title: "Send", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             
                         }))
                         self.present(alert, animated: true, completion: nil)
@@ -330,7 +330,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = heightDictionary[indexPath.row]
-        return height ?? UITableViewAutomaticDimension
+        return height ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -517,8 +517,8 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             if (error != nil) {
                 print(error as Any)
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 

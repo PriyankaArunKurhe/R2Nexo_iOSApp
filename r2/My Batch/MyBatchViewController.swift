@@ -45,9 +45,9 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -152,22 +152,22 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         
         let imageView = sender.view as! UIImageView
         let zoomVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoomImageCtrlrVwSID") as! ZoomImageViewController
-        self.addChildViewController(zoomVC)
+        self.addChild(zoomVC)
         //        zoomVC.view.frame.origin.y = tableView.contentOffset.y
         zoomVC.view.frame.origin.y = self.view.frame.origin.y+(self.navigationController?.navigationBar.frame.size.height)!
         zoomVC.view.frame.size.height = self.view.frame.size.height
         zoomVC.zoomImageScrollView.display(image: imageView.image!)
         self.view.addSubview(zoomVC.view)
-        zoomVC.didMove(toParentViewController: self)
+        zoomVC.didMove(toParent: self)
     }
     
     
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: true, completion: nil)
     }

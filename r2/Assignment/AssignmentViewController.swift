@@ -35,8 +35,8 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
        
         isEditAssignAnswer = UserDefaults.standard.string(forKey: "isEditable")! as String
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIResponder.keyboardWillHideNotification, object: nil)
         
         self.addDoneButtonOnKeyboard()
         
@@ -84,9 +84,9 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -96,9 +96,9 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -110,8 +110,8 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
         //        done.tintColor = UIColor.r2_Nav_Bar_Color
         
         var items = [UIBarButtonItem]()
@@ -129,7 +129,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             if self.view.frame.origin.y == 0.0 {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
@@ -140,7 +140,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             self.view.frame.origin.y = 0
             print("\n in \(keyboardFrame.cgSizeValue)keyboard hide self frame y :",self.view.frame.origin.y)
         }
@@ -226,13 +226,13 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         
         let imageView = sender.view as! UIImageView
         let zoomVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoomImageCtrlrVwSID") as! ZoomImageViewController
-        self.addChildViewController(zoomVC)
+        self.addChild(zoomVC)
         //        zoomVC.view.frame.origin.y = tableView.contentOffset.y
         zoomVC.view.frame.origin.y = self.view.frame.origin.y+(self.navigationController?.navigationBar.frame.size.height)!
         zoomVC.view.frame.size.height = self.view.frame.size.height - 50.0
         zoomVC.zoomImageScrollView.display(image: imageView.image!)
         self.view.addSubview(zoomVC.view)
-        zoomVC.didMove(toParentViewController: self)
+        zoomVC.didMove(toParent: self)
     }
     
     func get_Assignment_By_ID(assId:NSString){   // get assignment details
@@ -290,10 +290,10 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.sendAssignmentButton.isHidden = true
         
-        let alert = UIAlertController(title: "Would you like to submit your Assignment? ", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        let alert = UIAlertController(title: "Would you like to submit your Assignment? ", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
         }))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
             self.sendAssignment()
         }))
         
@@ -338,8 +338,8 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
                         self.sendAssignmentButton.isHidden = false
                         self.sendAssignmentTextView.endEditing(true)
                         
-                        let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             self.dismiss(animated: true, completion: nil)
                         }))
                         self.present(alert, animated: true, completion: nil)
@@ -398,8 +398,8 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             if (error != nil) {
                 print(error as Any)
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Update Error", message: "Error in connection. Please check your internet connection and try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 

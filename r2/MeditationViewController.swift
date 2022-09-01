@@ -40,7 +40,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         
         self.circleView.addGradientWithColor(color: UIColor.green)
         
-        circleView.contentMode = UIViewContentMode.scaleToFill
+        circleView.contentMode = UIView.ContentMode.scaleToFill
         circleView.layer.cornerRadius = circleView.frame.size.width / 2
         circleView.clipsToBounds = true
         
@@ -50,7 +50,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         circle2X = circleView.frame.origin.x
         circle2Y = circleView.frame.origin.y
         
-        innerCircleView1.contentMode = UIViewContentMode.scaleToFill
+        innerCircleView1.contentMode = UIView.ContentMode.scaleToFill
         innerCircleView1.layer.cornerRadius = innerCircleView1.frame.size.width / 2
         innerCircleView1.clipsToBounds = true
         
@@ -187,9 +187,9 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
     
     
     func openCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             pickerController.delegate = self
-            self.pickerController.sourceType = UIImagePickerControllerSourceType.camera
+            self.pickerController.sourceType = UIImagePickerController.SourceType.camera
             pickerController.allowsEditing = true
             self .present(self.pickerController, animated: true, completion: nil)
         }
@@ -200,7 +200,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        imageView = info[UIImagePickerControllerEditedImage] as! UIImage
+        imageView = info[UIImagePickerControllerEditedImage.rawValue] as! UIImage
         capturedImageView.contentMode = .scaleAspectFit
         capturedImageView.image = imageView
         
