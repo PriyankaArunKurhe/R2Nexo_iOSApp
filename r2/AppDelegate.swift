@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var badgeCount: Int = 0
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.sharedSDK().debug = true
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont(name: Constants.r2_semi_bold_font, size: 19)!, NSAttributedStringKey.foregroundColor : UIColor.white
+            NSAttributedString.Key.font: UIFont(name: Constants.r2_semi_bold_font, size: 19)!, NSAttributedString.Key.foregroundColor : UIColor.white
         ]
         
         UINavigationBar.appearance().barTintColor = UIColor.r2_Nav_Bar_Color
@@ -59,10 +59,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         // Override point for customization after application launch.
-        
+        self.checkSwift()
         return true
     }
     
+    func checkSwift() {
+        #if swift(>=5.5)
+                print("Swift 5.5")
+                
+        #elseif swift(>=5.4)
+                print("Swift 5.4")
+                
+        #elseif swift(>=5.3)
+                print("Swift 5.3")
+                
+        #elseif swift(>=5.2)
+                print("Swift 5.2")
+                
+        #elseif swift(>=5.1)
+                print("Swift 5.1")
+                
+        #elseif swift(>=5.0)
+                print("Swift 5.0")
+                
+        #elseif swift(>=4.2)
+                print("Swift 4.2")
+                
+        #elseif swift(>=4.1)
+                print("Swift 4.1")
+                
+        #elseif swift(>=4.0)
+                print("Swift 4.0")
+                
+        #elseif swift(>=3.2)
+                print("Swift 3.2")
+                
+        #elseif swift(>=3.0)
+                print("Swift 3.0")
+                
+        #elseif swift(>=2.2)
+                print("Swift 2.2")
+                
+        #elseif swift(>=2.1)
+                print("Swift 2.1")
+                
+        #elseif swift(>=2.0)
+                print("Swift 2.0")
+                
+        #elseif swift(>=1.2)
+                print("Swift 1.2")
+                
+        #elseif swift(>=1.1)
+                print("Swift 1.1")
+                
+        #elseif swift(>=1.0)
+                print("Swift 1.0")
+                
+        #endif
+    }
     func notifCount(){
         let application = UIApplication.shared
         let center = UNUserNotificationCenter.current()

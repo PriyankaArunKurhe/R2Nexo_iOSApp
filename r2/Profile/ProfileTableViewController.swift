@@ -48,7 +48,7 @@ class ProfileTableViewController: UITableViewController {
         
         self.getProfileInfo()
         
-        ProfileImageView.contentMode = UIViewContentMode.scaleToFill
+        ProfileImageView.contentMode = UIView.ContentMode.scaleToFill
         ProfileImageView.layer.cornerRadius = ProfileImageView.frame.size.width / 2
         ProfileImageView.clipsToBounds = true
         
@@ -138,7 +138,7 @@ class ProfileTableViewController: UITableViewController {
                     
                     self.bookmarkCountLbl.text = self.profileDict["bookmark_count"] as? String
                     self.ProfileImageView.downloadedFrom(url: URL(string: profileImageURL)!)
-                    self.ProfileImageView.contentMode = UIViewContentMode.scaleAspectFill
+                    self.ProfileImageView.contentMode = UIView.ContentMode.scaleAspectFill
                     self.profileTableView.reloadData()
                 }
             }
