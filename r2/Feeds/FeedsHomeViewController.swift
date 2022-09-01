@@ -666,7 +666,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
                 let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = self.view
-                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
                 self.present(activityViewController, animated: true, completion: nil)
                 
                 

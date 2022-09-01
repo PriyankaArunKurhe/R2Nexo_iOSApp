@@ -86,8 +86,8 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
         self.dateAppliedTextView.tag = 234
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.addDoneButtonOnKeyboard()
         
@@ -115,7 +115,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
         
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         
         
         scrollView.addSubview(refreshControl)
@@ -153,8 +153,8 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Internet Connection not Available!",
                                           message: "Please connect with internet and try again",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -254,8 +254,8 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
         //        done.tintColor = UIColor.r2_Nav_Bar_Color
         
         var items = [UIBarButtonItem]()
@@ -329,7 +329,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             if self.view.frame.origin.y == 0.0 {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
@@ -340,7 +340,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let _: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let _: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             self.view.frame.origin.y = 0
 //            print("\n in \(keyboardFrame.cgSizeValue)keyboard hide self frame y :",self.view.frame.origin.y)
         }
@@ -377,11 +377,11 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
             doDifferentTextView.circularBorder(color: UIColor.red, width: 2, corner_radius: 6)
             
         }else {
-            let alert = UIAlertController(title: "Would you like to submit Application? ", message: "", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            let alert = UIAlertController(title: "Would you like to submit Application? ", message: "", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                 
             }))
-            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                 self.submitApplication()
             }))
             
@@ -393,9 +393,9 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -445,8 +445,8 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
                     self.activityProgress.stopAnimating()
                     print("\n application submited successfully")
                     
-                    let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                    let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                         self.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert, animated: true, completion: nil)
@@ -524,7 +524,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         //Create the view
         let inputView = UIView(frame: CGRect(x:0, y:0, width:self.view.frame.width, height:240))
         
-        datePickerView.datePickerMode = UIDatePickerMode.date        
+        datePickerView.datePickerMode = UIDatePicker.Mode.date
         datePickerView.maximumDate = Date()
         inputView.addSubview(datePickerView) // add date picker to UIView
         
@@ -533,20 +533,20 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         self.dateAppliedTextView.text = dateFormatter.string(from: Date())
         
         let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
-        doneButton.setTitle("Done", for: UIControlState.normal)
+        doneButton.setTitle("Done", for: UIControl.State.normal)
         
         doneButton.titleLabel?.font = UIFont(name: Constants.r2_semi_bold_font, size: 18)
         
-        doneButton.setTitle("Done", for: UIControlState.highlighted)
-        doneButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        doneButton.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+        doneButton.setTitle("Done", for: UIControl.State.highlighted)
+        doneButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        doneButton.setTitleColor(UIColor.gray, for: UIControl.State.highlighted)
         
         inputView.addSubview(doneButton) // add Button to UIView
         
-        doneButton.addTarget(self, action: #selector(doneButtonAction), for: UIControlEvents.touchUpInside) // set button click event
+        doneButton.addTarget(self, action: #selector(doneButtonAction), for: UIControl.Event.touchUpInside) // set button click event
        
         dateAppliedTextView.inputView = inputView
-        datePickerView.addTarget(self, action: #selector(handleDatePicker), for: UIControlEvents.valueChanged)
+        datePickerView.addTarget(self, action: #selector(handleDatePicker), for: UIControl.Event.valueChanged)
         
 //        handleDatePicker(sender: datePickerView) // Set the date on start.
     }

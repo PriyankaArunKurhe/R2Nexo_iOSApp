@@ -17,7 +17,7 @@ class ProfileTopTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        profileImageView.contentMode = UIViewContentMode.scaleAspectFill
+        profileImageView.contentMode = UIView.ContentMode.scaleAspectFill
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         profileImageView.clipsToBounds = true
         // Initialization code

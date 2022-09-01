@@ -52,7 +52,7 @@ class FeedWithTextOnlyTableViewCell: UITableViewCell {
         feedPostedTimeLabel.textColor = UIColor.r2_Sub_Text_Color
         feedPostedByNameLabel.textColor = UIColor.r2_Nav_Bar_Color
         
-        feedPostedByProfilePic.contentMode = UIViewContentMode.scaleAspectFill
+        feedPostedByProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
         feedPostedByProfilePic.layer.cornerRadius = feedPostedByProfilePic.frame.size.width / 2
         feedPostedByProfilePic.clipsToBounds = true
    

@@ -45,7 +45,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         // loader
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.UIActivityIndicatorView.Style.medium
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating()
         alertLoader.view.addSubview(loadingIndicator)
 //        present(alertLoader, animated: true, completion: nil)
@@ -60,8 +60,8 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
 
         
 //        self.hideKeyboardWhenTappedAround()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.tableView.backgroundColor = UIColor(red:240/255.0,green:240/255.0,blue:240/255.0,alpha:1.0)
         
         self.getFeedDeatil(postId: UserDefaults.standard.string(forKey: "postID")! as String)
@@ -104,14 +104,18 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if ___: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            
+//        if ___: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+
 //            let keyboardRectangle = keyboardFrame.cgRectValue
 //            let keyboardHeight = keyboardRectangle.height
             self.view.frame.origin.y = 0
             print("\n in keyboard hide self frame y :",self.view.frame.origin.y)
         }
-    }
+
+        
+        
+
+    
     
     @objc func imageTappedForZoom(_ sender: UITapGestureRecognizer) {
         
@@ -417,7 +421,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 let sharedObjects:[AnyObject] = [objectsToShare as AnyObject,someText as AnyObject]
                 let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = self.view
-                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivityType.postToFacebook,UIActivityType.postToTwitter,UIActivityType.mail]
+                activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
                 self.present(activityViewController, animated: true, completion: nil)
                 
                 
@@ -607,7 +611,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             }
         }
     }
-    
+}
     /*
     // MARK: - Navigation
 
@@ -618,4 +622,4 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     */
 
-}
+

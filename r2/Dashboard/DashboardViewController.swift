@@ -241,7 +241,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
             DMcell.menuStatusCountLabel.text = self.menuCountArr[indexPath.row] + " Pending"
         }else if indexPath.row == 2 {
             DMcell.menuStatusCountLabel.text = self.menuCountArr[indexPath.row]
-            let numChars = DMcell.menuStatusCountLabel.text?.characters.count ?? 0
+            let numChars = DMcell.menuStatusCountLabel.text?.count ?? 0
             if numChars != 0{
                 let font:UIFont? = UIFont(name: Constants.r2_font, size:15)
                 let fontSuper:UIFont? = UIFont(name: Constants.r2_font, size:12)

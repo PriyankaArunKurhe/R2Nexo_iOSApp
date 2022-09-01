@@ -58,8 +58,8 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         
         questionLabel.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.addDoneButtonOnKeyboard()
         quizEssayTextView.delegate = self
@@ -122,8 +122,8 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
 //        done.tintColor = UIColor.r2_Nav_Bar_Color
         
         var items = [UIBarButtonItem]()
@@ -171,7 +171,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             if self.view.frame.origin.y == 0.0 {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
@@ -182,7 +182,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             self.view.frame.origin.y = 0
             print("\n in \(keyboardFrame.cgSizeValue)keyboard hide self frame y :",self.view.frame.origin.y)
         }
@@ -240,9 +240,9 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         dismiss(animated: true, completion: nil)
     }
@@ -581,10 +581,10 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func submitQuizButtonTouch(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Would you like to submit your Answers? ", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        let alert = UIAlertController(title: "Would you like to submit your Answers? ", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
         }))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
             self.submitAnswers()
         }))
         
@@ -619,8 +619,8 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
                         self.quizEssayTextView.textColor = UIColor.lightGray
                         self.quizEssayTextView.endEditing(true)
                         
-                        let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                        let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             self.dismiss(animated: true, completion: nil)
                         }))
                         self.present(alert, animated: true, completion: nil)

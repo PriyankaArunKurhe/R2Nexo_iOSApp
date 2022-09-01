@@ -38,8 +38,8 @@ class ChangePasswordViewController: UIViewController {
         confirmPassword.font = UIFont (name: Constants.r2_bold_font, size: CGFloat(Constants.r2_font_size))
         
         let attributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_font, size: 18)!
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_font, size: 18)!
         ]
         
         oldPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes:attributes)
@@ -47,9 +47,9 @@ class ChangePasswordViewController: UIViewController {
         confirmPassword.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes:attributes)
         
         changePasswordBtn.backgroundColor = UIColor.r2_Nav_Bar_Color
-        let forgotBtnAttrs : [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_bold_font, size: 18)!,
-            NSAttributedStringKey.foregroundColor : UIColor.white]
+        let forgotBtnAttrs : [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_bold_font, size: 18)!,
+            NSAttributedString.Key.foregroundColor : UIColor.white]
         
         let attributeString = NSMutableAttributedString(string: "Update",
                                                         attributes: forgotBtnAttrs)
@@ -68,9 +68,9 @@ class ChangePasswordViewController: UIViewController {
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionReveal
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         
@@ -144,7 +144,7 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func UpdateProfile(_ sender: Any) {
         
         let imageProfCompressed = self.DemoCircleImageView.image?.resizeWith(width: 151)        
-        let imageProf = UIImagePNGRepresentation(imageProfCompressed!)
+        let imageProf = imageProfCompressed!.pngData()
         var imageProfStr = imageProf?.base64EncodedString()
         imageProfStr = imageProfStr?.replacingOccurrences(of: " ", with: "\n")
         

@@ -103,7 +103,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                                      didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         var  chosenImage = UIImage()
-        chosenImage = info[UIImagePickerControllerOriginalImage.rawValue] as! UIImage
+        chosenImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as! UIImage
         ProfileImageView.contentMode = .scaleAspectFill
         ProfileImageView.image = chosenImage
         dismiss(animated:true, completion: nil)

@@ -36,7 +36,7 @@ class LeaderboardListCellTableViewCell: UITableViewCell {
         
         
         
-        leadStuProfilePic.contentMode = UIViewContentMode.scaleToFill
+        leadStuProfilePic.contentMode = UIView.ContentMode.scaleToFill
         leadStuProfilePic.layer.cornerRadius = leadStuProfilePic.frame.size.width / 2
         leadStuProfilePic.clipsToBounds = true
         

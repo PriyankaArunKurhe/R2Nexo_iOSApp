@@ -44,7 +44,7 @@ class CommentTableViewCell: UITableViewCell {
         commentCellBackgroundView.layer.shadowOpacity = 0.8
         commentCellBackgroundView.backgroundColor = UIColor.white
         
-        commenterImage.contentMode = UIViewContentMode.scaleAspectFill
+        commenterImage.contentMode = UIView.ContentMode.scaleAspectFill
         commenterImage.layer.cornerRadius = commenterImage.frame.size.width / 2
         commenterImage.clipsToBounds = true
         

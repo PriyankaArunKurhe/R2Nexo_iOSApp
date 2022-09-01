@@ -69,7 +69,7 @@ class BoostMeViewController: UIViewController {
         expertQuizBtn.layer.borderWidth = 1
         expertQuizBtn.layer.borderColor = UIColor.lightGray.cgColor
         
-        profilePicImageView.contentMode = UIViewContentMode.scaleToFill
+        profilePicImageView.contentMode = UIView.ContentMode.scaleToFill
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2
         profilePicImageView.clipsToBounds = true
         

@@ -200,7 +200,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        imageView = info[UIImagePickerControllerEditedImage.rawValue] as! UIImage
+        imageView = info[UIImagePickerController.InfoKey.editedImage.rawValue] as! UIImage
         capturedImageView.contentMode = .scaleAspectFit
         capturedImageView.image = imageView
         

@@ -46,7 +46,7 @@ class CircleClosing: UIView {
 //        animation.repeatCount = 200
         animation.fromValue = 0 // no circle to
         animation.toValue = 1 // circle
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         circleLayer.strokeEnd = 1.0
         // Do the actual animation
         circleLayer.add(animation, forKey: "animateCircle")

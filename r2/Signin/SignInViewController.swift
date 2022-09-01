@@ -56,7 +56,7 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
 //        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"new_login_screen")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch))
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "new_login_screen")
-        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         
         
@@ -67,14 +67,14 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
 //        PasswordLbl.tintColor = UIColor.darkGray
         
         
-        usernameTextField.leftViewMode = UITextFieldViewMode.always
+        usernameTextField.leftViewMode = UITextField.ViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 15))
         let image = UIImage(named: "icon-email-new")
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
         usernameTextField.leftView = imageView
         
-        passwordTextField.leftViewMode = UITextFieldViewMode.always
+        passwordTextField.leftViewMode = UITextField.ViewMode.always
         let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 15))
         let image2 = UIImage(named: "icon-password-new")
         imageView2.image = image2
@@ -91,16 +91,16 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
 //        passwordTextField.underlined()
         
         let attributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_semi_bold_font, size: 17)!
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_semi_bold_font, size: 17)!
         ]
         usernameTextField.attributedPlaceholder = NSAttributedString(string: "  Enter your username", attributes:attributes)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "  Enter your password", attributes:attributes)
         
-        let forgotBtnAttrs : [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font : UIFont(name: Constants.r2_semi_bold_font, size: 14)!,
-            NSAttributedStringKey.foregroundColor : UIColor.gray,
-            NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue]
+        let forgotBtnAttrs : [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : UIFont(name: Constants.r2_semi_bold_font, size: 14)!,
+            NSAttributedString.Key.foregroundColor : UIColor.gray,
+            NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         
         let attributeString = NSMutableAttributedString(string: "Forgot Password?",
                                                         attributes: forgotBtnAttrs)
@@ -121,8 +121,8 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
             print("Internet Connection not Available!")
             let alert = UIAlertController(title: "Internet Connection not Available!",
                                           message: "Please connect with internet and try again",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -165,8 +165,8 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
