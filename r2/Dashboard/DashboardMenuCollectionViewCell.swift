@@ -31,5 +31,4 @@ class DashboardMenuCollectionViewCell: UICollectionViewCell {
         
         // Initialization code
     }
-    
 }

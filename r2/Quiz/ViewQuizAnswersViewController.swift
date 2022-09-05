@@ -10,34 +10,22 @@ import NVActivityIndicatorView
 
 class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
     
-    
     @IBOutlet var optionALable1: UILabel!
     @IBOutlet var optionBLable2: UILabel!
     @IBOutlet var optionCLable3: UILabel!
     @IBOutlet var optionDLable4: UILabel!
-    
     @IBOutlet var optionAButton1: UIButton!
     @IBOutlet var optionBButton2: UIButton!
     @IBOutlet var optionCButton3: UIButton!
     @IBOutlet var optionDButton4: UIButton!
-    
     @IBOutlet var previousNextButtonContainerView: UIView!
     @IBOutlet var questionLabel: UILabel!
-    
     @IBOutlet var questionTextView: UITextView!
-    
-    
     @IBOutlet var quizTitleLabel: UILabel!
     @IBOutlet var quetionNumberLabel: UILabel!
-    
     @IBOutlet var quizEssayTextView: UITextView!
-    
-    
     @IBOutlet var essayConatinerView: UIView!
-    
     @IBOutlet var totalQuizScoreLabel: UILabel!
-    
-    
     var QuizeQuestionListDic:[Any] = []
     var QuizAnswersDic:[Any] = []
     var myAnswersArray = [[String: AnyObject]]()
@@ -55,8 +43,6 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         questionLabel.isHidden = true
         quizEssayTextView.delegate = self
         quizEssayTextView.layer.cornerRadius = 5
@@ -106,19 +92,16 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         self.activityProgress.removeFromSuperview()
     }
     
-    
     func hideOptionlabels()  {          // hide option label
         optionALable1.isHidden = true
         optionBLable2.isHidden = true
         optionCLable3.isHidden = true
         optionDLable4.isHidden = true
-        
         optionAButton1.isHidden = true
         optionBButton2.isHidden = true
         optionCButton3.isHidden = true
         optionDButton4.isHidden = true
     }
-    
     
     func showOptionlabels()  {  // show option label
         optionALable1.isHidden = false
@@ -130,7 +113,6 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         optionBButton2.isHidden = false
         optionCButton3.isHidden = false
         optionDButton4.isHidden = false
-        
     }
     
     func setBorderToOptionButtons() {  // set border
@@ -153,11 +135,10 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         optionDButton4.layer.cornerRadius = 7
         optionDButton4.layer.borderWidth = 1
         optionDButton4.layer.borderColor = UIColor.r2_faintGray.cgColor
-
-
-//        self.quizEssayTextView.text = ""
         
-//        print("\n self.QuizeQueObj  in set border function ",self.QuizeQueObj)
+        //        self.quizEssayTextView.text = ""
+        
+        //        print("\n self.QuizeQueObj  in set border function ",self.QuizeQueObj)
         
         if self.QuizeQueObj != nil{
             
@@ -193,7 +174,6 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                     self.quizEssayTextView.attributedText = attrStr
                 }
             }
-            
             
             if self.QuizeQueObj["correct_ans"] as? String != "" {
                 let correctAns = self.QuizeQueObj["correct_ans"] as? String
@@ -239,15 +219,10 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                              .characterEncoding: String.Encoding.utf8.rawValue],
                     documentAttributes: nil)
                 self.quizEssayTextView.attributedText = attrStr
-                
             }
-            
             // correct_ans
-            
         }
-        
     }
-    
     
     func viewQuizAnswers()  {   // to get quiz answers
         
@@ -269,23 +244,23 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                 DispatchQueue.main.async {
                     self.activityProgress.stopAnimating()
                     
-//                    var tempQuizeQueObj:NSDictionary!
-//                    for i in 0..<self.QuizeQuestionListDic.count {
-//                        tempQuizeQueObj = self.QuizeQuestionListDic[i] as! NSDictionary
-//                        let intQueID = tempQuizeQueObj["question_id"] as? Int
-//                        var questionID = ""
-//                        questionID = "\(intQueID!)"
-//                        let questionSeen = "1"
-//                        let questionAttempt = "0"
-//
-//                        let dictionary = ["question_id":"\(questionID)",
-//                            "answer_text":"",
-//                            "seen":"\(questionSeen)",
-//                            "attempt":"\(questionAttempt)"]
-//                        self.myAnswersArray.insert(dictionary as [String : AnyObject], at: i)
-//                    }
-//
-//                    print("\n answer array befor selecting options: \(self.myAnswersArray)")
+                    //                    var tempQuizeQueObj:NSDictionary!
+                    //                    for i in 0..<self.QuizeQuestionListDic.count {
+                    //                        tempQuizeQueObj = self.QuizeQuestionListDic[i] as! NSDictionary
+                    //                        let intQueID = tempQuizeQueObj["question_id"] as? Int
+                    //                        var questionID = ""
+                    //                        questionID = "\(intQueID!)"
+                    //                        let questionSeen = "1"
+                    //                        let questionAttempt = "0"
+                    //
+                    //                        let dictionary = ["question_id":"\(questionID)",
+                    //                            "answer_text":"",
+                    //                            "seen":"\(questionSeen)",
+                    //                            "attempt":"\(questionAttempt)"]
+                    //                        self.myAnswersArray.insert(dictionary as [String : AnyObject], at: i)
+                    //                    }
+                    //
+                    //                    print("\n answer array befor selecting options: \(self.myAnswersArray)")
                     
                     self.quetionNumberLabel.text = "Question \(self.queIndex+1)/\(self.QuizeQuestionListDic.count)"
                     self.quizTitleLabel.text = ResDictionary["quiz_title"] as? String
@@ -297,7 +272,7 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                     self.quizHasEssay = (ResDictionary["has_essay"] as? String)!
                     self.totalQuizScoreLabel.text = "Total Score: " + "\((ResDictionary["total_score"] as? String)!)"
                     
-//                    print("\n \n has Essay: \(self.quizHasEssay) \(ResDictionary["total_score"] as? String)")
+                    //                    print("\n \n has Essay: \(self.quizHasEssay) \(ResDictionary["total_score"] as? String)")
                     
                     if self.QuizeQueObj["question_type"] as? String == "MCQ" {
                         self.showOptionlabels()
@@ -314,16 +289,12 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                     }
                     
                     self.setBorderToOptionButtons()
-                    
-                    
-                    
                 }
             }else{
                 self.showToast(message: (ResDictionary["message"] as? String)!)
             }
         }
     }
-    
     
     @IBAction func nextQuestionButtonTouch(_ sender: Any) {
         
@@ -360,45 +331,39 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                     self.hideOptionlabels()
                     //                    self.addSelectedAnsToAnsArray(optionnumber: 5 )
                 }
-               
-                
-//                self.quizEssayTextView.text = ""
-//                var tempQuizeQueObj:NSDictionary!
-//                tempQuizeQueObj = self.myAnswersArray[self.queIndex] as NSDictionary
-//                if tempQuizeQueObj["answer_text"] as? String != "" {
-//                    let ans = tempQuizeQueObj["answer_text"] as? String
-//                    switch ans {
-//                    case "A"?:
-//                        print("\n selectedAns = A")
-//                        self.setBorderToOptionButtons()
-//                        self.optionAButton1.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionAButton1.layer.borderWidth = 2
-//                    case "B"?:
-//                        print("\n selectedAns = B")
-//                        self.setBorderToOptionButtons()
-//                        self.optionBButton2.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionBButton2.layer.borderWidth = 2
-//                    case "C"?:
-//                        print("\n selectedAns = C")
-//                        self.setBorderToOptionButtons()
-//                        self.optionCButton3.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionCButton3.layer.borderWidth = 2
-//                    case "D"?:
-//                        print("\n selectedAns = D")
-//                        self.setBorderToOptionButtons()
-//                        self.optionDButton4.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionDButton4.layer.borderWidth = 2
-//                    default:
-//                        self.quizEssayTextView.text = ans
-//                    }
-//                }
-//
-                
-                
+                //                self.quizEssayTextView.text = ""
+                //                var tempQuizeQueObj:NSDictionary!
+                //                tempQuizeQueObj = self.myAnswersArray[self.queIndex] as NSDictionary
+                //                if tempQuizeQueObj["answer_text"] as? String != "" {
+                //                    let ans = tempQuizeQueObj["answer_text"] as? String
+                //                    switch ans {
+                //                    case "A"?:
+                //                        print("\n selectedAns = A")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionAButton1.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionAButton1.layer.borderWidth = 2
+                //                    case "B"?:
+                //                        print("\n selectedAns = B")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionBButton2.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionBButton2.layer.borderWidth = 2
+                //                    case "C"?:
+                //                        print("\n selectedAns = C")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionCButton3.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionCButton3.layer.borderWidth = 2
+                //                    case "D"?:
+                //                        print("\n selectedAns = D")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionDButton4.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionDButton4.layer.borderWidth = 2
+                //                    default:
+                //                        self.quizEssayTextView.text = ans
+                //                    }
+                //                }
             }
         }
     }
-    
     
     @IBAction func previousQuestionButtonTouch(_ sender: Any) {
         
@@ -406,8 +371,7 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         
         if self.queIndex != 0 {
             self.queIndex = self.queIndex - 1
-            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
-            
+            self.QuizeQueObj = (self.QuizeQuestionListDic[self.queIndex] as! NSDictionary)
             DispatchQueue.main.async {
                 self.setBorderToOptionButtons()
                 self.quetionNumberLabel.text = "Question \(self.queIndex+1)/\(self.QuizeQuestionListDic.count)"
@@ -428,45 +392,41 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                     self.hideOptionlabels()
                 }
                 
-//
-//                
-//                self.quizEssayTextView.text = ""
-//                var tempQuizeQueObj:NSDictionary!
-//                tempQuizeQueObj = self.myAnswersArray[self.queIndex] as NSDictionary
-//                if tempQuizeQueObj["answer_text"] as? String != "" {
-//                    let ans = tempQuizeQueObj["answer_text"] as? String
-//                    switch ans {
-//                    case "A"?:
-//                        print("\n selectedAns = A")
-//                        self.setBorderToOptionButtons()
-//                        self.optionAButton1.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionAButton1.layer.borderWidth = 2
-//                    case "B"?:
-//                        print("\n selectedAns = B")
-//                        self.setBorderToOptionButtons()
-//                        self.optionBButton2.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionBButton2.layer.borderWidth = 2
-//                    case "C"?:
-//                        print("\n selectedAns = C")
-//                        self.setBorderToOptionButtons()
-//                        self.optionCButton3.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionCButton3.layer.borderWidth = 2
-//                    case "D"?:
-//                        print("\n selectedAns = D")
-//                        self.setBorderToOptionButtons()
-//                        self.optionDButton4.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
-//                        self.optionDButton4.layer.borderWidth = 2
-//                    default:
-//                        self.quizEssayTextView.text = ans
-//                    }
-//                }
+                //                self.quizEssayTextView.text = ""
+                //                var tempQuizeQueObj:NSDictionary!
+                //                tempQuizeQueObj = self.myAnswersArray[self.queIndex] as NSDictionary
+                //                if tempQuizeQueObj["answer_text"] as? String != "" {
+                //                    let ans = tempQuizeQueObj["answer_text"] as? String
+                //                    switch ans {
+                //                    case "A"?:
+                //                        print("\n selectedAns = A")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionAButton1.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionAButton1.layer.borderWidth = 2
+                //                    case "B"?:
+                //                        print("\n selectedAns = B")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionBButton2.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionBButton2.layer.borderWidth = 2
+                //                    case "C"?:
+                //                        print("\n selectedAns = C")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionCButton3.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionCButton3.layer.borderWidth = 2
+                //                    case "D"?:
+                //                        print("\n selectedAns = D")
+                //                        self.setBorderToOptionButtons()
+                //                        self.optionDButton4.layer.borderColor = UIColor.r2_Nav_Bar_Color.cgColor
+                //                        self.optionDButton4.layer.borderWidth = 2
+                //                    default:
+                //                        self.quizEssayTextView.text = ans
+                //                    }
+                //                }
                 
             }
         }
         
     }
-    
-    
     
     func PostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
         var convertedJsonDictResponse:NSDictionary!
@@ -501,8 +461,6 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         dataTask.resume()
     }
     
-    
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -512,8 +470,6 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         self.view.window!.layer.add(transition, forKey: nil)
         dismiss(animated: true, completion: nil)
     }
-    
-    
     /*
      // MARK: - Navigation
      
@@ -523,6 +479,5 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }
 

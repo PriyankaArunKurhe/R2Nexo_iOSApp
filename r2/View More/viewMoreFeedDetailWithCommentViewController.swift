@@ -28,10 +28,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     
     let alertLoader = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
         rightGesture.direction = .right
         self.view.addGestureRecognizer(rightGesture)
@@ -48,34 +47,32 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating()
         alertLoader.view.addSubview(loadingIndicator)
-//        present(alertLoader, animated: true, completion: nil)
+        //        present(alertLoader, animated: true, completion: nil)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
-//        commentBoxView.layer.borderColor = UIColor.black.cgColor
-//        commentBoxView.layer.borderWidth = 0
+        //        commentBoxView.layer.borderColor = UIColor.black.cgColor
+        //        commentBoxView.layer.borderWidth = 0
         commentTextView.delegate = self
         commentTextView.text = commentTextView.text
-
         
-//        self.hideKeyboardWhenTappedAround()
+        //        self.hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.tableView.backgroundColor = UIColor(red:240/255.0,green:240/255.0,blue:240/255.0,alpha:1.0)
         
         self.getFeedDeatil(postId: UserDefaults.standard.string(forKey: "postID")! as String)
-        
         // Do any additional setup after loading the view.
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-////        self.refresh()
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-////        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//    }
+    //    override func viewDidAppear(_ animated: Bool) {
+    ////        self.refresh()
+    //    }
+    //
+    //    override func viewWillAppear(_ animated: Bool) {
+    ////        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    //    }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.activityProgress.removeFromSuperview()
@@ -104,18 +101,13 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-//        if ___: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-
-//            let keyboardRectangle = keyboardFrame.cgRectValue
-//            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = 0
-            print("\n in keyboard hide self frame y :",self.view.frame.origin.y)
-        }
-
+        //        if ___: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKeyUIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         
-        
-
-    
+        //            let keyboardRectangle = keyboardFrame.cgRectValue
+        //            let keyboardHeight = keyboardRectangle.height
+        self.view.frame.origin.y = 0
+        print("\n in keyboard hide self frame y :",self.view.frame.origin.y)
+    }
     
     @objc func imageTappedForZoom(_ sender: UITapGestureRecognizer) {
         
@@ -124,7 +116,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         let imageView = sender.view as! UIImageView
         let zoomVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoomImageCtrlrVwSID") as! ZoomImageViewController
         self.addChild(zoomVC)
-//        zoomVC.view.frame.origin.y = tableView.contentOffset.y
+        //        zoomVC.view.frame.origin.y = tableView.contentOffset.y
         zoomVC.view.frame.origin.y = self.view.frame.origin.y+(self.navigationController?.navigationBar.frame.size.height)!
         zoomVC.view.frame.size.height = self.view.frame.size.height - 50.0
         zoomVC.zoomImageScrollView.display(image: imageView.image!)
@@ -158,9 +150,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             print("\n Dragging down")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
                             UIView.AnimationOptions.curveEaseOut, animations: {
-                    self.navigationController?.isNavigationBarHidden = false
-                    UIApplication.shared.isStatusBarHidden = false
-                    
+                self.navigationController?.isNavigationBarHidden = false
+                UIApplication.shared.isStatusBarHidden = false
+                
             }, completion: { finished in
                 
             })
@@ -170,19 +162,18 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             print("\n Dragging up")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
                             UIView.AnimationOptions.curveEaseOut, animations: {
-                    self.navigationController?.isNavigationBarHidden = true
-                    UIApplication.shared.isStatusBarHidden = true
+                self.navigationController?.isNavigationBarHidden = true
+                UIApplication.shared.isStatusBarHidden = true
             }, completion: { finished in
                 
             })
         }
     }
     
-    
     @objc func doneButtonAction()
     {
         self.commentTextView.resignFirstResponder()
-//        self.textViewDescription.resignFirstResponder()
+        //        self.textViewDescription.resignFirstResponder()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -196,7 +187,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     }
     
     func textViewDidChange(_ textView: UITextView) {
-//        placeholderLabel.isHidden = !textView.text.isEmpty
+        //        placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -219,14 +210,14 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let postObj = postDict[indexPath.row] as! NSDictionary
-//        if indexPath.row == 0 && postObj["has_video"] as! String == "False" && postObj["has_img"] as! String == "False" {
-//            return 100.0
-//        }else{
-//            return 560.0
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        let postObj = postDict[indexPath.row] as! NSDictionary
+    //        if indexPath.row == 0 && postObj["has_video"] as! String == "False" && postObj["has_img"] as! String == "False" {
+    //            return 100.0
+    //        }else{
+    //            return 560.0
+    //        }
+    //    }
     
     
     // MARK: - Table View
@@ -261,8 +252,8 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             cell.commentTimeLabel.text = postObj["comment_time"] as? String
             if postObj["student_image"] != nil {
                 let commenterImageURL = "\(Constants.r2_baseURL)/\(postObj["student_image"] as! String)"
-//                print("\n commenter image url ",commenterImageURL)
-//                cell.commenterImage.downloadedFrom(url: URL(string: commenterImageURL)!)
+                //                print("\n commenter image url ",commenterImageURL)
+                //                cell.commenterImage.downloadedFrom(url: URL(string: commenterImageURL)!)
                 cell.commenterImage.sd_setImage(with: URL(string: commenterImageURL), placeholderImage: UIImage(named: "default_image.png"))
             }
             return cell
@@ -297,14 +288,14 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 FeedDescCell.feedPostedPicImageView.isHidden = false
                 if postObj["img_url"] != nil {
                     let postImageURL = "\(Constants.r2_baseURL)/\(postObj["img_url"] as! String)"
-//                    FeedDescCell.feedPostedPicImageView.downloadedFrom(url: URL(string: postImageURL)!)
+                    //                    FeedDescCell.feedPostedPicImageView.downloadedFrom(url: URL(string: postImageURL)!)
                     FeedDescCell.feedPostedPicImageView.sd_setImage(with: URL(string: postImageURL), placeholderImage: UIImage(named: "default_image.png"))
                     let tap = UITapGestureRecognizer(target: self, action: #selector(imageTappedForZoom))
                     FeedDescCell.feedPostedPicImageView.addGestureRecognizer(tap)
                 }
                 
             }else if  postObj["has_video"] as! String == "False" && postObj["has_img"] as! String == "False" {
-//                    FeedDescCell.feedPostedPicImageView.image = UIImage(named: "blank_square")
+                //                    FeedDescCell.feedPostedPicImageView.image = UIImage(named: "blank_square")
                 FeedTextCell.feedPostedPicImageView.image = imageWithImage(image: UIImage(named: "blank_square")!, scaledToSize: CGSize(width: 20, height: 20))
                 
                 FeedTextCell.feedTitleLabel.text = postObj["title"] as? String
@@ -409,9 +400,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 let postID = sender.accessibilityHint
                 self.likePost(postId: postID! as NSString)
             }else if(sender.tag == 2){
-//                print("\n Sender hint For Comment button: \(String(describing: sender.accessibilityHint))")
-//                UserDefaults.standard.set(sender.accessibilityHint, forKey: "postID")
-//                self.performSegue(withIdentifier: "FromFeedHomeViewViewMoreDetail", sender: self)
+                //                print("\n Sender hint For Comment button: \(String(describing: sender.accessibilityHint))")
+                //                UserDefaults.standard.set(sender.accessibilityHint, forKey: "postID")
+                //                self.performSegue(withIdentifier: "FromFeedHomeViewViewMoreDetail", sender: self)
             }else if(sender.tag == 3){
                 print("\n Sender hint For Comment button: \(String(describing: sender.accessibilityHint))")
                 
@@ -423,8 +414,6 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 activityViewController.popoverPresentationController?.sourceView = self.view
                 activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
                 self.present(activityViewController, animated: true, completion: nil)
-                
-                
             }
         }
     }
@@ -448,9 +437,9 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         self.dismiss(animated: true, completion: nil)
     }
     
-//    let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
-//    rightGesture.direction = .right
-//    self.view.addGestureRecognizer(rightGesture)
+    //    let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
+    //    rightGesture.direction = .right
+    //    self.view.addGestureRecognizer(rightGesture)
     
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
@@ -460,9 +449,8 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
-        
     }
-        
+    
     func PostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
         var convertedJsonDictResponse:NSDictionary!
         let dataStr: NSString = paramStr
@@ -489,7 +477,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -504,8 +492,8 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     
     @IBAction func sendCommentButtonTouch(_ sender: Any) {
         DispatchQueue.main.async {
-        self.sendCommentButton.isHidden = true
-        self.sendComment(postId: UserDefaults.standard.string(forKey: "postID")! as String)
+            self.sendCommentButton.isHidden = true
+            self.sendComment(postId: UserDefaults.standard.string(forKey: "postID")! as String)
         }
     }
     
@@ -542,7 +530,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
                         self.sendCommentButton.isHidden = false
                         self.commentTextView.endEditing(true)
                         self.isScrollDownComments = true
-//                        self.tableViewScrollToBottom(animated: true)
+                        //                        self.tableViewScrollToBottom(animated: true)
                     }
                     
                     if self.postDict.count > 0 {
@@ -556,7 +544,6 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         }else{
             self.showToast(message: "Write something...")
         }
-        
     }
     
     func likePost(postId:NSString){     // like feed
@@ -594,10 +581,10 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         print("\n comment param: ",rawDataStr)
         self.PostAPIWithParam(apiName: "get_comments", paramStr: rawDataStr as NSString){  ResDictionary in
             print("\n Result Dictionary: ",ResDictionary)
-//            let statusVal = ResDictionary["status"] as? String
+            //            let statusVal = ResDictionary["status"] as? String
             self.postDict = (ResDictionary["comments"] as! NSArray) as! [Any]
             DispatchQueue.main.async {
-                    self.activityProgress.stopAnimating()
+                self.activityProgress.stopAnimating()
                 print("\n row count for table view",self.postDict.count)
                 if self.postDict.count > 0 {
                     self.tableView.reloadData()
@@ -612,14 +599,14 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
         }
     }
 }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ // Get the new view controller using segue.destinationViewController.
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 

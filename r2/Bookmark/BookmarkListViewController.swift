@@ -98,9 +98,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         self.get_Posts(pageNo:self.pageNumber)
     }
     
-    
-    
-    
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -111,7 +108,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         self.dismiss(animated: false, completion: nil)
         
     }
-    
     //Pagination
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
@@ -145,7 +141,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
             "cache-control": "no-cache",
-            ]
+        ]
         let dataStr: String = ("data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\", \"page_no\":\"\(pageNo)\"}" as NSString) as String
         print("POST Params for get_bookmarks: \(dataStr)")
         let postData = NSMutableData(data: dataStr.data(using: String.Encoding.utf8)!)
@@ -319,7 +315,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         }
     }
     
-    
     // MARK: - Table View
     
     fileprivate var heightDictionary: [Int : CGFloat] = [:]
@@ -346,8 +341,8 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         
         if  dictObj["has_video"] as! String == "False" && dictObj["has_img"] as! String == "False" {
             
-//            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
-//            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
+            //            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
+            //            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
             let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
                 data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
@@ -371,7 +366,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                 textFeedCell.FeedLikeButton.setImage(UIImage (named: "btn_like_unfilled"), for: .normal)
             }
             
-            
             let postID : Int = dictObj["post_id"] as! Int
             let stringpostID = "\(postID)"
             
@@ -393,9 +387,8 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             return textFeedCell
             
         }
-        
-//        cell.feedPostedDescLabel.text = dictObj["text"] as? String
-//        cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
+        //        cell.feedPostedDescLabel.text = dictObj["text"] as? String
+        //        cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
         
         let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
         let attrStr = try! NSAttributedString(
@@ -404,7 +397,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                      .characterEncoding: String.Encoding.utf8.rawValue],
             documentAttributes: nil)
         cell.feedPostedDescLabel.attributedText = attrStr
-        
         cell.feedPostedByNameLabel.text = dictObj["title"] as? String
         cell.feedPostedTimeLabel.text = dictObj["created_at"] as? String
         cell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_unfilled"), for: .normal)
@@ -419,8 +411,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             cell.FeedLikeButton.setImage(UIImage (named: "btn_like_filled"), for: .normal)
         }
         
-        
-        
         cell.FeedPostedVideoView.isHidden = true
         if dictObj["has_video"] as! String == "True"{
             print("\n Show Video")
@@ -430,7 +420,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             cell.FeedPostedVideoView.loadVideoURL(videoURL! as URL)
             cell.FeedPostedVideoView.clipsToBounds = true
             //                cell.feedPostedPicImageView.isHidden = true
-        }else{
+        } else {
             if dictObj["img_url"] != nil {
                 print("\n hide Video")
                 cell.FeedPostedVideoView.isHidden = true
@@ -448,7 +438,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         
         let postID : Int = dictObj["post_id"] as! Int
         let stringpostID = "\(postID)"
-        
         cell.FeedBookmarkButton.tag = 0
         cell.FeedBookmarkButton.accessibilityHint = stringpostID
         cell.FeedBookmarkButton.accessibilityIdentifier = String(indexPath.row)
@@ -579,7 +568,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
         }
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FromFeedHomeViewViewMoreDetail") {
             let nav = segue.destination as! UINavigationController
@@ -587,7 +575,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             svc.isScrollDownComments = self.isScrollDownComments
         }
     }
-    
     
     @IBAction func backButtonTouch(_ sender: Any) {
         
@@ -602,7 +589,6 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
      // Pass the selected object to the new view controller.
      }
      */
-    
 }
 
 

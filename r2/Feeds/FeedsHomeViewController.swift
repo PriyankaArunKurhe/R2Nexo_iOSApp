@@ -5,7 +5,6 @@
 //  Created by NonStop io on 18/10/17.
 //  Copyright © 2017 NonStop io. All rights reserved.
 //
-
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -29,12 +28,11 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
     var pageNumberToBeChanged: Bool = false
     var PostListDic: NSDictionary!
     let refreshControl = UIRefreshControl()
-    
     let activityProgress = NVActivityIndicatorView(frame: CGRect(x: (UIScreen.main.bounds.size.width/2) - 25.0, y: (UIScreen.main.bounds.size.height/2) - 25.0, width: 51, height: 51), type: NVActivityIndicatorType.ballScaleRippleMultiple, color: UIColor.r2_Nav_Bar_Color)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FeedsTextCell")
+        //        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FeedsTextCell")
         self.activityProgress.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.50)
         self.view.addSubview(activityProgress)
         
@@ -47,9 +45,9 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         rightGesture.direction = .right
         self.view.addGestureRecognizer(rightGesture)
         
-//        UITabBar.appearance().barTintColor = UIColor.black
-//        UITabBar.appearance().backgroundColor = UIColor.black
-
+        //        UITabBar.appearance().barTintColor = UIColor.black
+        //        UITabBar.appearance().backgroundColor = UIColor.black
+        
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
@@ -75,7 +73,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,19 +90,17 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        for subview in (self.navigationController?.navigationBar.subviews)! {
-//            if NSStringFromClass(subview.classForCoder).contains("BarBackground") {
-//                var subViewFrame: CGRect = subview.frame
-//                // subViewFrame.origin.y = -20;
-//                subViewFrame.size.height = 70
-//                subview.frame = subViewFrame
-//            }
-//        }
+        //        for subview in (self.navigationController?.navigationBar.subviews)! {
+        //            if NSStringFromClass(subview.classForCoder).contains("BarBackground") {
+        //                var subViewFrame: CGRect = subview.frame
+        //                // subViewFrame.origin.y = -20;
+        //                subViewFrame.size.height = 70
+        //                subview.frame = subViewFrame
+        //            }
+        //        }
         self.get_Posts(pageNo:self.pageNumber)
     }
-    
-    
-    
+        
     @objc func swipeToNextScreen(sender:UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
@@ -138,10 +134,10 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             print("\n Dragging down")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
                             UIView.AnimationOptions.curveEaseOut, animations: {
-                    self.navigationController?.isNavigationBarHidden = false
-                    UIApplication.shared.isStatusBarHidden = false
-                    self.tabBarController?.tabBar.isHidden = false
-                    
+                self.navigationController?.isNavigationBarHidden = false
+                UIApplication.shared.isStatusBarHidden = false
+                self.tabBarController?.tabBar.isHidden = false
+                
             }, completion: { finished in
                 
             })
@@ -150,16 +146,15 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             // Dragging up
             print("\n Dragging up")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                            UIView.AnimationOptions.curveEaseOut, animations: {
-                    self.navigationController?.isNavigationBarHidden = true
-                    UIApplication.shared.isStatusBarHidden = true
-                    self.tabBarController?.tabBar.isHidden = true
+                UIView.AnimationOptions.curveEaseOut, animations: {
+                self.navigationController?.isNavigationBarHidden = true
+                UIApplication.shared.isStatusBarHidden = true
+                self.tabBarController?.tabBar.isHidden = true
             }, completion: { finished in
                 
             })
         }
     }
- 
     
     func get_Posts(pageNo: NSInteger){
         DispatchQueue.main.async {
@@ -174,7 +169,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
             "cache-control": "no-cache",
-            ]
+        ]
         let dataStr: String = ("data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\", \"page_no\":\"\(pageNo)\"}" as NSString) as String
         print("POST Params for get_posts: \(dataStr)")
         let postData = NSMutableData(data: dataStr.data(using: String.Encoding.utf8)!)
@@ -191,12 +186,12 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 UIApplication.shared.endIgnoringInteractionEvents()
             })
             if (error != nil) {//
-
+                
                 
                 print("Error: \(String(describing: error))")
                 DispatchQueue.main.async {
-                        self.presentAlertWithOkButton(withTitle: "Error in connection", message: "Error in connection. Please check your internet connection and try again.")
-                        print("Error in connection. Please check your internet connection and try again.")
+                    self.presentAlertWithOkButton(withTitle: "Error in connection", message: "Error in connection. Please check your internet connection and try again.")
+                    print("Error in connection. Please check your internet connection and try again.")
                     self.activityProgress.stopAnimating()
                     self.view.isUserInteractionEnabled = true
                 }
@@ -244,7 +239,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                                     print("Post Dict \(self.postsDict)")
                                 }
                                 print("\n \n Post Dict :- \(self.postsDict)")
-//                                self.indicator.stopAnimating()
+                                //                                self.indicator.stopAnimating()
                                 let new_entries2 = self.PostListDic?["data"] as! [Any]
                                 if (new_entries2.count > 0) {
                                     self.tableView?.reloadData()
@@ -283,9 +278,9 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 }
                 if(errorFlag == 1) {
                     DispatchQueue.main.async {
-//                        let alert = UIAlertController(title: "Invalid_User_Error".localized, message: "", preferredStyle: UIAlertControllerStyle.alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//                        self.present(alert, animated: true, completion: nil)
+                        //                        let alert = UIAlertController(title: "Invalid_User_Error".localized, message: "", preferredStyle: UIAlertControllerStyle.alert)
+                        //                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        //                        self.present(alert, animated: true, completion: nil)
                     }
                 }
             }
@@ -323,7 +318,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                 }
             }
         })
-        dataTask.resume()        
+        dataTask.resume()
     }
     
     func bookmarkFeed(postId:String)  {     // to bookmark feed
@@ -361,8 +356,8 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             }
         }
     }
-
- // MARK: - Table View
+    
+    // MARK: - Table View
     
     fileprivate var heightDictionary: [Int : CGFloat] = [:]
     
@@ -388,8 +383,8 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         if  dictObj["has_video"] as! String == "False" && dictObj["has_img"] as! String == "False" {
             
-//            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
-//            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
+            //            textFeedCell.feedPostedDescLabel.text = dictObj["text"] as? String
+            //            textFeedCell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
             
             let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
             let attrStr = try! NSAttributedString(
@@ -444,91 +439,86 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             textFeedCell.readMoreBtn.accessibilityIdentifier = String(indexPath.row)
             textFeedCell.readMoreBtn.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
             
-
             return textFeedCell
             
         }
-
-//            cell.feedPostedDescLabel.text = dictObj["text"] as? String
-//            cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
         
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
-            let attrStr = try! NSAttributedString(
-                data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
-                options:[.documentType: NSAttributedString.DocumentType.html,
-                         .characterEncoding: String.Encoding.utf8.rawValue],
-                documentAttributes: nil)
-            cell.feedPostedDescLabel.attributedText = attrStr
+        //            cell.feedPostedDescLabel.text = dictObj["text"] as? String
+        //            cell.feedPostedDescLabel.text = cell.feedPostedDescLabel.text?.htmlToString
         
+        let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (dictObj["text"] as? String)!) as String
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options:[.documentType: NSAttributedString.DocumentType.html,
+                     .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+        cell.feedPostedDescLabel.attributedText = attrStr
+        cell.feedPostedByNameLabel.text = dictObj["title"] as? String
+        cell.feedPostedTimeLabel.text = dictObj["created_at"] as? String
+        cell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_unfilled"), for: .normal)
+        cell.FeedLikeButton.setImage(UIImage (named: "btn_like_unfilled"), for: .normal)
+        cell.FeedLikeCount.text = dictObj["like_count"] as? String
+        cell.FeedCommentCountLbl.text = dictObj["comment_count"] as? String
         
+        if dictObj["is_bookmarked"] as! String == "1"{
+            cell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_filled"), for: .normal)
+        }
+        if dictObj["is_liked"] as! String == "1"{
+            cell.FeedLikeButton.setImage(UIImage (named: "btn_like_filled"), for: .normal)
+        }
         
-            cell.feedPostedByNameLabel.text = dictObj["title"] as? String
-            cell.feedPostedTimeLabel.text = dictObj["created_at"] as? String
-            cell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_unfilled"), for: .normal)
-            cell.FeedLikeButton.setImage(UIImage (named: "btn_like_unfilled"), for: .normal)
-            cell.FeedLikeCount.text = dictObj["like_count"] as? String
-            cell.FeedCommentCountLbl.text = dictObj["comment_count"] as? String
-        
-            if dictObj["is_bookmarked"] as! String == "1"{
-                cell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_filled"), for: .normal)
-            }
-            if dictObj["is_liked"] as! String == "1"{
-                cell.FeedLikeButton.setImage(UIImage (named: "btn_like_filled"), for: .normal)
-            }
-            
-        
-            cell.FeedPostedVideoView.isHidden = true
-            if dictObj["has_video"] as! String == "True"{
-                print("\n Show Video")
+        cell.FeedPostedVideoView.isHidden = true
+        if dictObj["has_video"] as! String == "True"{
+            print("\n Show Video")
+            cell.FeedPostedVideoView.backgroundColor = UIColor.clear
+            cell.FeedPostedVideoView.isHidden = false
+            let videoURL = NSURL(string: dictObj["video_url"] as! String)
+            cell.FeedPostedVideoView.loadVideoURL(videoURL! as URL)
+            cell.FeedPostedVideoView.clipsToBounds = true
+            //                cell.feedPostedPicImageView.isHidden = true
+        }else{
+            if dictObj["img_url"] != nil {
+                print("\n hide Video")
+                cell.FeedPostedVideoView.isHidden = true
                 cell.FeedPostedVideoView.backgroundColor = UIColor.clear
-                cell.FeedPostedVideoView.isHidden = false
-                let videoURL = NSURL(string: dictObj["video_url"] as! String)
-                cell.FeedPostedVideoView.loadVideoURL(videoURL! as URL)
-                cell.FeedPostedVideoView.clipsToBounds = true
-//                cell.feedPostedPicImageView.isHidden = true
+                let postImageURL = "\(Constants.r2_baseURL)/\(dictObj["img_url"] as! String)"
+                cell.feedPostedPicImageView.sd_setImage(with: URL(string: postImageURL), placeholderImage: UIImage(named: "default_image.png"))
+                //                    let postCreatorImageURL = "\(Constants.r2_baseURL)/\(dictObj["creator_img"] as! String)"
+                //                    cell.feedPostedByProfilePic.downloadedFrom(url: URL(string: postCreatorImageURL)!)
+                
             }else{
-                if dictObj["img_url"] != nil {
-                    print("\n hide Video")
-                    cell.FeedPostedVideoView.isHidden = true
-                    cell.FeedPostedVideoView.backgroundColor = UIColor.clear
-                    let postImageURL = "\(Constants.r2_baseURL)/\(dictObj["img_url"] as! String)"
-                    cell.feedPostedPicImageView.sd_setImage(with: URL(string: postImageURL), placeholderImage: UIImage(named: "default_image.png"))
-//                    let postCreatorImageURL = "\(Constants.r2_baseURL)/\(dictObj["creator_img"] as! String)"
-//                    cell.feedPostedByProfilePic.downloadedFrom(url: URL(string: postCreatorImageURL)!)
-                    
-                }else{
-//                    cell.FeedPostedVideoView.isHidden = true
-                    cell.feedPostedPicImageView.image = UIImage(named:"blank_square")
-                }
+                //                    cell.FeedPostedVideoView.isHidden = true
+                cell.feedPostedPicImageView.image = UIImage(named:"blank_square")
             }
-
-            let postID : Int = dictObj["post_id"] as! Int
-            let stringpostID = "\(postID)"
-
-            cell.FeedBookmarkButton.tag = 0
-            cell.FeedBookmarkButton.accessibilityHint = stringpostID
-            cell.FeedBookmarkButton.accessibilityIdentifier = String(indexPath.row)
-            cell.FeedBookmarkButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        }
         
-            cell.FeedLikeButton.tag = 1
-            cell.FeedLikeButton.accessibilityHint = stringpostID
-            cell.FeedLikeButton.accessibilityIdentifier = String(indexPath.row)
-            cell.FeedLikeButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        let postID : Int = dictObj["post_id"] as! Int
+        let stringpostID = "\(postID)"
         
-            cell.FeedCommentButton.tag = 2
-            cell.FeedCommentButton.accessibilityHint = stringpostID
-            cell.FeedCommentButton.accessibilityIdentifier = String(indexPath.row)
-            cell.FeedCommentButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        cell.FeedBookmarkButton.tag = 0
+        cell.FeedBookmarkButton.accessibilityHint = stringpostID
+        cell.FeedBookmarkButton.accessibilityIdentifier = String(indexPath.row)
+        cell.FeedBookmarkButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
         
-            cell.FeedShareButton.tag = 3
-            cell.FeedShareButton.accessibilityHint = stringpostID
-            cell.FeedShareButton.accessibilityIdentifier = String(indexPath.row)
-            cell.FeedShareButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
-       
-            cell.readMoreBtn.tag = 5
-            cell.readMoreBtn.accessibilityHint = stringpostID
-            cell.readMoreBtn.accessibilityIdentifier = String(indexPath.row)
-            cell.readMoreBtn.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        cell.FeedLikeButton.tag = 1
+        cell.FeedLikeButton.accessibilityHint = stringpostID
+        cell.FeedLikeButton.accessibilityIdentifier = String(indexPath.row)
+        cell.FeedLikeButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        
+        cell.FeedCommentButton.tag = 2
+        cell.FeedCommentButton.accessibilityHint = stringpostID
+        cell.FeedCommentButton.accessibilityIdentifier = String(indexPath.row)
+        cell.FeedCommentButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        
+        cell.FeedShareButton.tag = 3
+        cell.FeedShareButton.accessibilityHint = stringpostID
+        cell.FeedShareButton.accessibilityIdentifier = String(indexPath.row)
+        cell.FeedShareButton.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
+        
+        cell.readMoreBtn.tag = 5
+        cell.readMoreBtn.accessibilityHint = stringpostID
+        cell.readMoreBtn.accessibilityIdentifier = String(indexPath.row)
+        cell.readMoreBtn.addTarget(self, action: #selector(self.cellButtonTouchAction), for: .touchUpInside)
         
         
         return cell
@@ -543,7 +533,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.isScrollDownComments = false
         self.performSegue(withIdentifier: "FromFeedHomeViewViewMoreDetail", sender: self)
     }
-
+    
     func likePost(postId:NSString){
         let rawDataStr: NSString = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\",\"post_id\":\"\(postId)\"}" as NSString
         self.PostAPIWithParam(apiName: "like_post", paramStr: rawDataStr){  ResDictionary in
@@ -598,7 +588,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
                         
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -616,11 +606,11 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             if(sender.tag == 0) {
                 print("\n Sender hint For Bookmark button: \(String(describing: sender.accessibilityHint))")
                 let postID = sender.accessibilityHint
-//                self.bookmarkFeed(postId: (postID! as String))
+                //                self.bookmarkFeed(postId: (postID! as String))
                 
                 var indP: IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
                 indP.row = Int(sender.accessibilityIdentifier!)!
-
+                
                 if sender.currentImage == UIImage(named: "btn_bookmark_filled"){
                     sender.setImage(UIImage(named: "btn_bookmark_unfilled"), for: .normal)
                     self.bookmarkFeed(postId: (postID! as String))
@@ -629,11 +619,10 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                     self.bookmarkFeed(postId: (postID! as String))
                 }
                 
-                
             }else if(sender.tag == 1) {
                 print("\n Sender hint For Like button: \(String(describing: sender.accessibilityHint))")
                 let postID = sender.accessibilityHint
-//                self.likePost(postId: postID! as NSString)
+                //                self.likePost(postId: postID! as NSString)
                 
                 var indP: IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
                 indP.row = Int(sender.accessibilityIdentifier!)!
@@ -697,13 +686,9 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
                     sender.setImage(UIImage(named: "btn_like_filled"), for: .normal)
                     self.likePost(postId: postID! as NSString)
                 }
-                
             }
-            
-            
         }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FromFeedHomeViewViewMoreDetail") {
@@ -712,16 +697,11 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             svc.isScrollDownComments = self.isScrollDownComments
         }
     }
-    
-    
-    
     /*
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

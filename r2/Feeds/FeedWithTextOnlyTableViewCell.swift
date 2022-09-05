@@ -9,7 +9,7 @@
 import UIKit
 
 class FeedWithTextOnlyTableViewCell: UITableViewCell {
-
+    
     @IBOutlet var feedPostedByProfilePic: UIImageView!
     @IBOutlet var feedPostedByNameLabel: UILabel!
     @IBOutlet var feedPostedTimeLabel: UILabel!
@@ -24,15 +24,15 @@ class FeedWithTextOnlyTableViewCell: UITableViewCell {
     
     @IBOutlet var FeedLikeCount: UILabel!
     @IBOutlet var FeedCommentCountLbl: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -55,8 +55,5 @@ class FeedWithTextOnlyTableViewCell: UITableViewCell {
         feedPostedByProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
         feedPostedByProfilePic.layer.cornerRadius = feedPostedByProfilePic.frame.size.width / 2
         feedPostedByProfilePic.clipsToBounds = true
-   
-        
     }
-    
 }

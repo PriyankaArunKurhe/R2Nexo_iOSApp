@@ -5,41 +5,28 @@
 //  Created by NonStop io on 12/01/18.
 //  Copyright © 2018 NonStop io. All rights reserved.
 //
-
 import UIKit
 
 class AssignmentViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
-    
     @IBOutlet var tableView: UITableView!
-    
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
     var AssignmentID = ""
     var AssignmentDicObj: NSDictionary!
     var isEditAssignAnswer = "true"
-    
     @IBOutlet var sendAssignmentTextView: UITextView!
-    
     @IBOutlet var sendAssignmentTextviewContainer: UIView!
-    
     @IBOutlet var sendAssignmentButton: UIButton!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
         rightGesture.direction = .right
         self.view.addGestureRecognizer(rightGesture)
-       
         isEditAssignAnswer = UserDefaults.standard.string(forKey: "isEditable")! as String
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         self.addDoneButtonOnKeyboard()
-        
         sendAssignmentTextView.delegate = self
         sendAssignmentTextviewContainer.addTopBorderWithColor(color: UIColor.r2_Sub_Text_Color, width: 2)
         sendAssignmentTextView.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size))
@@ -55,8 +42,6 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             self.view_Assignment_Ans(assId: AssignmentID as NSString)
             self.sendAssignmentButton.isHidden = true
         }
-        
-        
         // Do any additional setup after loading the view.
     }
     
@@ -75,7 +60,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             self.sendAssignmentButton.isHidden = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,7 +77,6 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         
     }
     
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -101,10 +85,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         transition.subtype = CATransitionSubtype.fromLeft
         self.view.window!.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
-        
     }
-    
-    
     
     func addDoneButtonOnKeyboard()
     {
@@ -146,15 +127,13 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if self.AssignmentDicObj != nil {
-                return 1
+            return 1
         }else{
             return 0
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,7 +141,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         let AssignImgVdoCell = tableView.dequeueReusableCell(withIdentifier: "AssignmentImageVideoCell", for: indexPath) as! AssignmentImgVdoTableCellTableViewCell
         let assignTextCell = tableView.dequeueReusableCell(withIdentifier: "AssignmentTextCell", for: indexPath) as! AssignmentImgVdoTableCellTableViewCell
         
-        print("\n Assignment Dic",self.AssignmentDicObj)
+        print("\n Assignment Dic",self.AssignmentDicObj!)
         
         if  AssignmentDicObj["has_video"] as! String == "False" && AssignmentDicObj["has_img"] as! String == "False" {
             let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String)!) as String
@@ -178,7 +157,6 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             return assignTextCell
         }
         
-        
         let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(Constants.r2_font_size)\">%@</span>" as NSString, (AssignmentDicObj["text"] as? String)!) as String
         let attrStr = try! NSAttributedString(
             data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
@@ -188,8 +166,6 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         AssignImgVdoCell.AssignmentTextView.attributedText = attrStr
         AssignImgVdoCell.AssignmentTitleLabel.text = AssignmentDicObj["title"] as? String
         AssignImgVdoCell.AssignmentCreatedDateTimeLabel.text = AssignmentDicObj["created_at"] as? String
-        
-        
         AssignImgVdoCell.AssignmentVideo.isHidden = true
         if AssignmentDicObj["has_video"] as! String == "True"{
             print("\n Show Video")
@@ -199,7 +175,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             AssignImgVdoCell.AssignmentVideo.loadVideoURL(videoURL! as URL)
             AssignImgVdoCell.AssignmentVideo.clipsToBounds = true
             //                cell.feedPostedPicImageView.isHidden = true
-        }else{
+        } else {
             if AssignmentDicObj["img_url"] != nil {
                 print("\n hide Video")
                 AssignImgVdoCell.AssignmentVideo.isHidden = true
@@ -214,16 +190,12 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
                 AssignImgVdoCell.AssignmentImageView.image = UIImage(named:"blank_square")
             }
         }
-
+        
         return AssignImgVdoCell
-        
-        
     }
     
     @objc func imageTappedForZoom(_ sender: UITapGestureRecognizer) {   // for image zoom
-        
         self.sendAssignmentTextView.resignFirstResponder()
-        
         let imageView = sender.view as! UIImageView
         let zoomVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ZoomImageCtrlrVwSID") as! ZoomImageViewController
         self.addChild(zoomVC)
@@ -244,9 +216,9 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
                     
                     let AssignObj = (ResDictionary["data"] as! NSArray) as! [Any]
                     
-                    self.AssignmentDicObj = AssignObj[0] as! NSDictionary
+                    self.AssignmentDicObj = (AssignObj[0] as! NSDictionary)
                     
-                    print("\n $$ start_assignment Success \n ", self.AssignmentDicObj)
+                    print("\n $$ start_assignment Success \n ", self.AssignmentDicObj as Any)
                     
                     self.tableView.reloadData()
                     self.showToast(message: (ResDictionary["message"] as? String)!)
@@ -255,19 +227,18 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-    
     func view_Assignment_Ans(assId:NSString){    // to view submited assignment answers
-        let rawDataStr: NSString = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\",\"ass_id\":\"\(assId)\"}" as NSString
+        let rawDataStr: NSString = "data={\"(email\":\"\(userName)\",\"pas)sword\":\"\(userPassword)\",\"ass_id\":\"\(assId)\"}" as NSString
         self.PostAPIWithParam(apiName: "view_assignment_ans", paramStr: rawDataStr){  ResDictionary in
-            let statusVal = ResDictionary["status"] as? String
+            let statusVal = ResDictionary["status"] as? String as Any
             DispatchQueue.main.async {
-                if statusVal == "success"{
+                if statusVal as! String == "success"{
                     
                     let AssignObj = (ResDictionary["data"] as! NSArray) as! [Any]
                     
-                    self.AssignmentDicObj = AssignObj[0] as! NSDictionary
+                    self.AssignmentDicObj = (AssignObj[0] as! NSDictionary)
                     self.sendAssignmentTextView.text = self.AssignmentDicObj["student_answer"] as? String
-                    print("\n $$ given answer of Assignment Success \n ", self.AssignmentDicObj)
+                    print("\n $$ given answer of Assignment Success \n ", self.AssignmentDicObj as Any)
                     
                     self.tableView.reloadData()
                     self.showToast(message: (ResDictionary["message"] as? String)!)
@@ -276,20 +247,15 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-    
-    
-    
-    @objc func refresh(){
+    @objc func refresh() {
         print("\n\n Refresh func call \n \n")
         
         self.get_Assignment_By_ID(assId: AssignmentID as NSString)
-//        refreshControl.endRefreshing()
+        //        refreshControl.endRefreshing()
     }
     
     @IBAction func sendAssignmentButtonTouch(_ sender: Any) {
-        
         self.sendAssignmentButton.isHidden = true
-        
         let alert = UIAlertController(title: "Would you like to submit your Assignment? ", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
         }))
@@ -298,21 +264,14 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }))
         
         self.present(alert, animated: true, completion: nil)
-        
-        
-        
-        
     }
     
-    
     func sendAssignment()  {    // submit assignment
-        
         let assignmentText = sendAssignmentTextView.text
         var assignmentStr = ""
         assignmentStr = assignmentText!
         var stringWithoutWhiteSpace = assignmentStr.replacingOccurrences(of: "\n", with: "")
         stringWithoutWhiteSpace = stringWithoutWhiteSpace.replacingOccurrences(of: " ", with: "")
-        
         assignmentStr = assignmentStr.replacingOccurrences(of: "\\", with: "\\%5C")
         assignmentStr = assignmentStr.replacingOccurrences(of: "\n", with: "\\n")
         assignmentStr = assignmentStr.replacingOccurrences(of: "&", with: "%26")
@@ -328,16 +287,13 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
             self.PostAPIWithParam(apiName: "submit_assignment", paramStr: rawDataStr as NSString){  ResDictionary in
                 print("\n Result Dictionary: ",ResDictionary)
                 let statusVal = ResDictionary["status"] as? String
-                
                 print("\n response from send assignment: ",(ResDictionary["message"] as? String)!)
-                
                 DispatchQueue.main.async {
                     if statusVal == "success"{
                         self.sendAssignmentTextView.text = "Write Your Assignment Here"
                         self.sendAssignmentTextView.textColor = UIColor.lightGray
                         self.sendAssignmentButton.isHidden = false
                         self.sendAssignmentTextView.endEditing(true)
-                        
                         let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             self.dismiss(animated: true, completion: nil)
@@ -353,7 +309,6 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         }
         
     }
-    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
@@ -377,11 +332,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         textView.textColor = UIColor.black
     }
     
-    
-    
     func PostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
-        
-        
         var convertedJsonDictResponse:NSDictionary!
         let dataStr: NSString = paramStr
         let postData = NSMutableData(data: dataStr.data(using: String.Encoding.utf8.rawValue)!)
@@ -410,7 +361,7 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
                         
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -420,18 +371,13 @@ class AssignmentViewController: UIViewController,UITableViewDelegate,UITableView
         })
         dataTask.resume()
     }
-    
-    
-    
-    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

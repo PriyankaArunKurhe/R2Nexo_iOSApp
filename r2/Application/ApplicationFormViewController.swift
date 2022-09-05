@@ -11,74 +11,42 @@ import NVActivityIndicatorView
 
 class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     
-    
-    
     @IBOutlet var scoreLabel: UILabel!
-    
     @IBOutlet var scrollView: UIScrollView!
-    
     @IBOutlet var topicNameLabel: UILabel!
-    
     @IBOutlet var topicNameTextView: UITextView!
-    
     @IBOutlet var instanceWhereLabel: UILabel!
-    
     @IBOutlet var instanceWhereTextView: UITextView!
-    
     @IBOutlet var dateAppliedLabel: UILabel!
-    
     @IBOutlet var dateAppliedTextView: UITextView!
-    
     @IBOutlet var whatWasEffectLabel: UILabel!
-    
     @IBOutlet var whatWasEffectTextView: UITextView!
-    
     @IBOutlet var whatWentWellLabel: UILabel!
-    
     @IBOutlet var whatWentWellTextView: UITextView!
-    
     @IBOutlet var whatNotGoesExpectedLabel: UILabel!
-    
     @IBOutlet var whatNotGoesExpectedTextView: UITextView!
-    
     @IBOutlet var reflectionLabel: UILabel!
-    
     @IBOutlet var reflectionTextView: UITextView!
-    
     @IBOutlet var doDifferentLabel: UILabel!
-    
     @IBOutlet var doDifferentTextView: UITextView!
-    
     @IBOutlet var submitApplicationButton: UIButton!
-    
     @IBOutlet var containerView: UIView!
-    
     @IBOutlet var sepretorView: UIView!
-    
     let dateFormatter = DateFormatter()
     let locale = NSLocale.current
     var datePicker : UIDatePicker!
     let toolBar = UIToolbar()
-    
     let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x:0, y:40, width:0, height:0))
-    
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
     let refreshControl = UIRefreshControl()
-    
     let activityProgress = NVActivityIndicatorView(frame: CGRect(x: (UIScreen.main.bounds.size.width/2) - 25.0, y: (UIScreen.main.bounds.size.height/2) - 25.0, width: 51, height: 51), type: NVActivityIndicatorType.ballScaleRippleMultiple, color: UIColor.r2_Nav_Bar_Color)
-    
     var ApplicationDic:[Any] = []
-    
-    
-    
     var questionArray = ["Topic Name","Instance where applied?","Date applied","What was the effect?","What went well ?","What did not go as expected?","Reflections","What will I do differently next time?"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        self.containerView.addBottomBorderWithColor(color: UIColor.r2_faintGray, width: 1)
-        
         self.topicNameTextView.text = UserDefaults.standard.string(forKey: "ApplicationTopicTitle")! as String
         self.title = self.topicNameTextView.text.capitalized
         self.topicNameTextView.isEditable = false
@@ -101,7 +69,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         self.submitApplicationButton.backgroundColor = UIColor.r2_Nav_Bar_Color
         self.submitApplicationButton.titleLabel?.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size))
         
-        
         self.designView()
         
         let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
@@ -111,16 +78,13 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         self.activityProgress.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.50)
         self.view.addSubview(activityProgress)
        
-        
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
         
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
         
-        
         scrollView.addSubview(refreshControl)
         print("\n topic ID in Application Form: \(UserDefaults.standard.string(forKey: "applicationTopicID")! as String)")
-        
         
         if UserDefaults.standard.string(forKey: "isApplicationEditable")! as String == "True"{
             self.submitApplicationButton.isHidden = false
@@ -137,9 +101,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         }
         
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
+        override func viewWillAppear(_ animated: Bool) {
         
         userName = UserDefaults.standard.string(forKey: "userID")! as String
         userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
@@ -166,11 +128,9 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.activityProgress.removeFromSuperview()
-        
     }
     
     @objc func refresh(){
-        
         print("\n\n Refresh func call \n \n")
         refreshControl.endRefreshing()
     }
@@ -194,8 +154,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         self.reflectionTextView.isUserInteractionEnabled = true
         self.doDifferentTextView.isUserInteractionEnabled = true
     }
-    
-    
     func designView() {
         
         scoreLabel.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size))
@@ -248,7 +206,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         topicNameTextView.circularBorder(color: UIColor.r2_faintGray, width: 2, corner_radius: 6)
         doDifferentTextView.circularBorder(color: UIColor.r2_faintGray, width: 2, corner_radius: 6)
     }
-
     
     func addDoneButtonOnKeyboard()
     {
@@ -274,7 +231,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
     }
     
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if (textView.text != nil && textView.text != " ") {
@@ -299,7 +255,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
     }
     
-    
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
                 if textView.tag == 234 {
                     self.doDatePicker()
@@ -311,7 +266,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
 //        self.doDatePicker()
     }
-    
     
     @objc func doneButtonAction()
     {
@@ -345,12 +299,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
 //            print("\n in \(keyboardFrame.cgSizeValue)keyboard hide self frame y :",self.view.frame.origin.y)
         }
     }
-    
-    
-    
-    
-
-    
     @IBAction func submitApplicationButtonTouch(_ sender: Any) {
         
         self.setCircularboderToTextView()
@@ -401,7 +349,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
     }
     
-    
     func viewAppAnswers() {
         
         let rawDataStr: String = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\",\"topic_id\":\"\(UserDefaults.standard.string(forKey: "applicationTopicID")! as String)\"}" as String
@@ -431,10 +378,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
             }
         }
     }
-    
-    
     func submitApplication() {
-        
         let rawDataStr: String = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\",\"topic_id\":\"\(UserDefaults.standard.string(forKey: "applicationTopicID")! as String)\",\"date_applied\":\"\(replaceSpecialSymbols(rawString: dateAppliedTextView.text!))\",\"instance\":\"\(replaceSpecialSymbols(rawString: instanceWhereTextView.text!))\",\"effect\":\"\(replaceSpecialSymbols(rawString: whatWasEffectTextView.text!))\",\"well\":\"\(replaceSpecialSymbols(rawString: whatWentWellTextView.text!))\",\"unexpected\":\"\(replaceSpecialSymbols(rawString: whatNotGoesExpectedTextView.text!))\",\"reflection\":\"\(replaceSpecialSymbols(rawString: reflectionTextView.text!))\",\"different\":\"\(replaceSpecialSymbols(rawString: doDifferentTextView.text!))\",\"app_seen\":\"\(1)\",\"app_attempt\":\"\(1)\"}" as String
         print("\n application param: ",rawDataStr)
         self.parsePostAPIWithParam(apiName: "submit_application", paramStr: rawDataStr as NSString){  ResDictionary in
@@ -458,9 +402,7 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         }
         
         print("\n Submit application method call")
-        
     }
-    
     
     func parsePostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
         var convertedJsonDictResponse:NSDictionary!
@@ -517,8 +459,6 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
         
         return attrStr
     }
-    
-    
     func doDatePicker(){
        
         //Create the view
@@ -564,15 +504,12 @@ class ApplicationFormViewController: UIViewController,UITextViewDelegate {
     
     // MARK: - Navigation
     
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         
         self.dismiss(animated: false, completion: nil)
     }
     
     /*
-    
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

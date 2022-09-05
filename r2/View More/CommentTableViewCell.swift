@@ -10,27 +10,21 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
     
-    @IBOutlet var commenterImage: UIImageView!    
-    
+    @IBOutlet var commenterImage: UIImageView!
     @IBOutlet var commenterNameLabel: UILabel!
-    
     @IBOutlet var commentTextLabel: UILabel!
-    
     @IBOutlet var commentTimeLabel: UILabel!
-    
     @IBOutlet var commentCellBackgroundView: UIView!
-    
     @IBOutlet var commentTimeSepretorLineLabel: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -54,7 +48,5 @@ class CommentTableViewCell: UITableViewCell {
         commentTextLabel.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size))
         commentTimeLabel.textColor = UIColor.r2_Sub_Text_Color
         commentTimeLabel.font = UIFont(name: Constants.r2_font, size: CGFloat(Constants.r2_font_size-5))
-        
     }
-
 }

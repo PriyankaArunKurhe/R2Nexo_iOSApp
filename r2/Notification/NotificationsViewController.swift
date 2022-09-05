@@ -47,7 +47,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
         getNotifications()
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         self.activityProgress.removeFromSuperview()
     }
@@ -90,7 +90,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         cell.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         cell.NotificationTextLabel.text = notifObj["text"] as? String
-
+        
         let modifiedFont = NSString(format:"<span style=\"font-family: \(Constants.r2_font), 'HelveticaNeue'; font-size: \(16)\">%@</span>" as NSString, cell.NotificationTextLabel.text!) as String
         let attrStr = try! NSAttributedString(
             data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
@@ -102,14 +102,12 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         
         if notifObj["notif_img"] != nil {
             let notifImageURL = "\(Constants.r2_baseURL)/\(notifObj["notif_img"] as! String)"
-//            cell.NotifImageView.downloadedFrom(url: URL(string: notifImageURL)!)
+            //            cell.NotifImageView.downloadedFrom(url: URL(string: notifImageURL)!)
             cell.NotifImageView.sd_setImage(with: URL(string: notifImageURL), placeholderImage: UIImage(named: "default_image.png"))
         }
         
         cell.NotifImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        
-        
-        
+                
         if notifObj["read"] as! String == "False" {
             cell.backgroundColor = UIColor(red: 204/255, green: 236/255, blue: 248/255, alpha: 1)
         }else{
@@ -127,26 +125,24 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         let stringNotifID = "\(notifID)"
         print(stringNotifID)
         
-        self.readNotification(notifID: stringNotifID)
-        
-        
+        self.readNotification(notifID: stringNotifID)        
         
         if notifObj["redirect_to"] as! String == "Post" || notifObj["redirect_to"] as! String == "Comment" {
             let postID : Int = notifObj["redirect_id"] as! Int
             let stringpostID = "\(postID)"
-//            print(stringpostID)
+            //            print(stringpostID)
             UserDefaults.standard.set(stringpostID, forKey: "postID")
             self.performSegue(withIdentifier: "NotificationToViewMoreScreen", sender: self)
         }else if notifObj["redirect_to"] as! String == "Quiz" {
-//            let quizID : Int = notifObj["redirect_id"] as! Int
-//            let stringquizID = "\(quizID)"
-//            UserDefaults.standard.set(stringquizID, forKey: "quizeID")
+            //            let quizID : Int = notifObj["redirect_id"] as! Int
+            //            let stringquizID = "\(quizID)"
+            //            UserDefaults.standard.set(stringquizID, forKey: "quizeID")
             UserDefaults.standard.set(true, forKey: "isQuizList")
             self.tabBarController?.selectedIndex = 2
         }else if notifObj["redirect_to"] as! String == "Application"{
-//            let appID : Int = notifObj["redirect_id"] as! Int
-//            let stringappID = "\(appID)"
-//            UserDefaults.standard.set(stringappID, forKey: "applicationTopicID")
+            //            let appID : Int = notifObj["redirect_id"] as! Int
+            //            let stringappID = "\(appID)"
+            //            UserDefaults.standard.set(stringappID, forKey: "applicationTopicID")
             performSegue(withIdentifier: "NotifToApplicationListVewSegue", sender: self)
             
         }else if notifObj["redirect_to"] as! String == "Assignment" {
@@ -204,8 +200,8 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
                         self.tableView.reloadData()
                     }
                     print("\n \n ## unread notification count \(ResDictionary["unread_count"] as! NSInteger)")
-                        let badgeCount: Int = ResDictionary["unread_count"]! as! Int
-                        self.tabBarController?.tabBar.items?[3].badgeValue = "\(badgeCount)"
+                    let badgeCount: Int = ResDictionary["unread_count"]! as! Int
+                    self.tabBarController?.tabBar.items?[3].badgeValue = "\(badgeCount)"
                     self.showToast(message: (ResDictionary["message"] as? String)!)
                 }
             }else{
@@ -237,7 +233,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse!)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -247,15 +243,15 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         })
         dataTask.resume()
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -5,7 +5,6 @@
 //  Created by NonStop io on 18/10/17.
 //  Copyright © 2017 NonStop io. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import UserNotifications
@@ -15,11 +14,11 @@ import Fabric
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    
     var window: UIWindow?
     
     var badgeCount: Int = 0
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UNUserNotificationCenter.current().delegate = self
@@ -45,77 +44,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("Pushy device token: \(deviceToken)")
             UserDefaults.standard.set(deviceToken, forKey: "pushyToken")
         })
-
         // Listen for push notifications
         pushy.setNotificationHandler({ (data, completionHandler) in
             // Print notification payload data
             print("Received notification: \(data)")
-
+            
             completionHandler(UIBackgroundFetchResult.newData)
         })
         
         if (UserDefaults.standard.string(forKey: "userID") != nil) {
             self.getAppAndOSVersion()
         }
-        
         // Override point for customization after application launch.
         self.checkSwift()
         return true
     }
     
     func checkSwift() {
-        #if swift(>=5.5)
-                print("Swift 5.5")
-                
-        #elseif swift(>=5.4)
-                print("Swift 5.4")
-                
-        #elseif swift(>=5.3)
-                print("Swift 5.3")
-                
-        #elseif swift(>=5.2)
-                print("Swift 5.2")
-                
-        #elseif swift(>=5.1)
-                print("Swift 5.1")
-                
-        #elseif swift(>=5.0)
-                print("Swift 5.0")
-                
-        #elseif swift(>=4.2)
-                print("Swift 4.2")
-                
-        #elseif swift(>=4.1)
-                print("Swift 4.1")
-                
-        #elseif swift(>=4.0)
-                print("Swift 4.0")
-                
-        #elseif swift(>=3.2)
-                print("Swift 3.2")
-                
-        #elseif swift(>=3.0)
-                print("Swift 3.0")
-                
-        #elseif swift(>=2.2)
-                print("Swift 2.2")
-                
-        #elseif swift(>=2.1)
-                print("Swift 2.1")
-                
-        #elseif swift(>=2.0)
-                print("Swift 2.0")
-                
-        #elseif swift(>=1.2)
-                print("Swift 1.2")
-                
-        #elseif swift(>=1.1)
-                print("Swift 1.1")
-                
-        #elseif swift(>=1.0)
-                print("Swift 1.0")
-                
-        #endif
+#if swift(>=5.5)
+        print("Swift 5.5")
+        
+#elseif swift(>=5.4)
+        print("Swift 5.4")
+        
+#elseif swift(>=5.3)
+        print("Swift 5.3")
+        
+#elseif swift(>=5.2)
+        print("Swift 5.2")
+        
+#elseif swift(>=5.1)
+        print("Swift 5.1")
+        
+#elseif swift(>=5.0)
+        print("Swift 5.0")
+        
+#elseif swift(>=4.2)
+        print("Swift 4.2")
+        
+#elseif swift(>=4.1)
+        print("Swift 4.1")
+        
+#elseif swift(>=4.0)
+        print("Swift 4.0")
+        
+#elseif swift(>=3.2)
+        print("Swift 3.2")
+        
+#elseif swift(>=3.0)
+        print("Swift 3.0")
+        
+#elseif swift(>=2.2)
+        print("Swift 2.2")
+        
+#elseif swift(>=2.1)
+        print("Swift 2.1")
+        
+#elseif swift(>=2.0)
+        print("Swift 2.0")
+        
+#elseif swift(>=1.2)
+        print("Swift 1.2")
+        
+#elseif swift(>=1.1)
+        print("Swift 1.1")
+        
+#elseif swift(>=1.0)
+        print("Swift 1.0")
+        
+#endif
     }
     func notifCount(){
         let application = UIApplication.shared
@@ -130,18 +127,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func checkLogin()  {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if (UserDefaults.standard.string(forKey: "userID") != nil) {
-//            getNotifications()
+            //            getNotifications()
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBarSID")
         }else{
-//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewSID")
+            //            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewSID")
         }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        let userInfo = response.notification.request.content.userInfo
-//        if let chatID = userInfo["chatID"] as? String {
-//            // here you can instantiate / select the viewController and present it
-//        }
+        //        let userInfo = response.notification.request.content.userInfo
+        //        if let chatID = userInfo["chatID"] as? String {
+        //            // here you can instantiate / select the viewController and present it
+        //        }
         
         if (UserDefaults.standard.string(forKey: "userID") != nil) {
             let myTabBar = self.window?.rootViewController as! UITabBarController // Getting Tab Bar
@@ -160,14 +157,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let rawDataStr: String = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\",\"os_version\":\"\(systemVersion)\",\"app_version\":\"\(infoDictionary?["CFBundleShortVersionString"] as! String)\"}" as String
         print("\n comment param: ",rawDataStr)
         self.PostAPIWithParam(apiName: "set_version", paramStr: rawDataStr as NSString){  ResDictionary in
-
+            
             let statusVal = ResDictionary["status"] as? String
             if statusVal == "success"{
                 print((ResDictionary["message"] as? String)!)
             }else{
                 print((ResDictionary["message"] as? String)!)
             }
-
+            
         }
     }
     
@@ -220,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse!)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -231,7 +228,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dataTask.resume()
     }
     
-    
     func applicationWillResignActive(_ application: UIApplication) {
         if (UserDefaults.standard.string(forKey: "userID") != nil) {
             getNotifications()
@@ -240,26 +236,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
-        
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

@@ -57,11 +57,11 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-//        if UserDefaults.standard.bool(forKey: "isQuizList") != nil {
-//            isQuizListTable = UserDefaults.standard.bool(forKey: "isQuizList") as Bool
-//        }else{
-//
-//        }
+        //        if UserDefaults.standard.bool(forKey: "isQuizList") != nil {
+        //            isQuizListTable = UserDefaults.standard.bool(forKey: "isQuizList") as Bool
+        //        }else{
+        //
+        //        }
         
         isQuizListTable = UserDefaults.standard.bool(forKey: "isQuizList") as Bool
         
@@ -77,14 +77,14 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             listHeddingLabel.text = "Your Assignments are listed below!"
         }
         
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
-         userName = UserDefaults.standard.string(forKey: "userID")! as String
-         userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
+        
+        userName = UserDefaults.standard.string(forKey: "userID")! as String
+        userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
         
         print("\n \n print tab isquiz: \(UserDefaults.standard.bool(forKey: "isQuizList"))")
         
@@ -103,25 +103,25 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             listHeddingLabel.text = "Your Assignments are listed below!"
         }
         
-//        self.circleView.transform = CGAffineTransform(scaleX: 0, y: 0)
-//        UIView.animate(withDuration: 4, delay: 0, options: .curveEaseOut, animations: {
-//            self.circleView.transform = .identity
-//            self.circleView.backgroundColor = UIColor.black
-//
-//        }, completion: {(isCompleted) in
-//
-//            UIView.animate(withDuration: 4, animations: {
-//                self.circleView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-//            }, completion: {(isCompleted) in
-////                        let circleWidth = self.circleView.frame.size.width
-////                        let circleHeight = circleWidth
-////                        let circleView = CircleClosing(frame: CGRect(x: self.circleView.frame.origin.x-2.5, y: self.circleView.frame.origin.y-2.5, width: circleWidth+5, height: circleHeight+5))
-////                        self.view.addSubview(circleView)
-////                        circleView.animateCircle(duration: 3.0)
-//
-//            })
-//
-//        })
+        //        self.circleView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        //        UIView.animate(withDuration: 4, delay: 0, options: .curveEaseOut, animations: {
+        //            self.circleView.transform = .identity
+        //            self.circleView.backgroundColor = UIColor.black
+        //
+        //        }, completion: {(isCompleted) in
+        //
+        //            UIView.animate(withDuration: 4, animations: {
+        //                self.circleView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+        //            }, completion: {(isCompleted) in
+        ////                        let circleWidth = self.circleView.frame.size.width
+        ////                        let circleHeight = circleWidth
+        ////                        let circleView = CircleClosing(frame: CGRect(x: self.circleView.frame.origin.x-2.5, y: self.circleView.frame.origin.y-2.5, width: circleWidth+5, height: circleHeight+5))
+        ////                        self.view.addSubview(circleView)
+        ////                        circleView.animateCircle(duration: 3.0)
+        //
+        //            })
+        //
+        //        })
         
     }
     
@@ -129,7 +129,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.activityProgress.removeFromSuperview()
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -143,8 +143,8 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @objc func refresh(){
-//        self.getQuizeList()
-//        refreshControl.endRefreshing()
+        //        self.getQuizeList()
+        //        refreshControl.endRefreshing()
         
         if isQuizListTable {
             self.getQuizeList()
@@ -168,7 +168,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let rawDataStr: String = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\"}" as String
         print("\n get student assign list param: ",rawDataStr)
         self.PostAPIWithParam(apiName: "get_student_assign_list", paramStr: rawDataStr as NSString){  ResDictionary in
-//            print("\n Assignment Result Dictionary: ",ResDictionary)
+            //            print("\n Assignment Result Dictionary: ",ResDictionary)
             let statusVal = ResDictionary["status"] as? String
             
             if statusVal == "success"{
@@ -201,7 +201,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-
+    
     
     @IBAction func AssignmentButtonTouch(_ sender: Any) {
         print("\n Assignment button Touch")
@@ -234,7 +234,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.quizScoreLabel.text = ""
             
             if QuizeObj["quiz_status"] as? String == "take_now" {
-//                cell.quizStatusButton.backgroundColor = UIColor.red  rgb(74,144,226)
+                //                cell.quizStatusButton.backgroundColor = UIColor.red  rgb(74,144,226)
                 cell.quizStatusButton.backgroundColor = UIColor(red: 74.0/255.0, green: 144.0/255.0, blue: 226.0/255.0, alpha: 0.99)
                 cell.quizStatusButton.setTitle("Take Now", for: .normal)
                 cell.quizStatusButton.isEnabled = true
@@ -283,7 +283,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.quizScoreLabel.text = ""
             
             if QuizeObj["status"] as? String == "take_now" {
-//                cell.quizStatusButton.backgroundColor = UIColor.red
+                //                cell.quizStatusButton.backgroundColor = UIColor.red
                 cell.quizStatusButton.backgroundColor = UIColor(red: 74.0/255.0, green: 144.0/255.0, blue: 226.0/255.0, alpha: 0.99)
                 cell.quizStatusButton.setTitle("Take Now", for: .normal)
                 cell.quizStatusButton.isEnabled = true
@@ -324,41 +324,41 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
         
-//        if(cell.isSelected){
-//            cell.backgroundColor = UIColor.r2_Nav_Bar_Color
-//        }else{
-//            cell.backgroundColor = UIColor.clear
-//        }
+        //        if(cell.isSelected){
+        //            cell.backgroundColor = UIColor.r2_Nav_Bar_Color
+        //        }else{
+        //            cell.backgroundColor = UIColor.clear
+        //        }
         
-//        cell.selectionStyle = .none
+        //        cell.selectionStyle = .none
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let QuizeObj = QuizeListDic[indexPath.row] as! NSDictionary
-//
-//        if isQuizListTable {
-//            let quizeID : String = QuizeObj["quiz_id"] as! String
-//            let stringQuizeID = "\(quizeID)"
-//            print(stringQuizeID)
-//            UserDefaults.standard.set(stringQuizeID, forKey: "quizeID")
-//            if QuizeObj["quiz_status"] as? String == "take_now" {
-//                self.performSegue(withIdentifier: "QuizListToStartQuizViewSegue", sender: self)
-//            }
-//        }else {
-//            print("\n Go to Assignment View quizAssignmentToStartAssignmentViewCtrlrSegue")
-//            let assignmentID : String = QuizeObj["assign_id"] as! String
-//            let stringassignmentID = "\(assignmentID)"
-//            print(stringassignmentID)
-//            UserDefaults.standard.set(stringassignmentID, forKey: "assignmentID")
-//
-//            if QuizeObj["status"] as? String == "take_now" {
-//                self.performSegue(withIdentifier: "quizAssignToStartAssigntViewCtrlrSegue", sender: self)
-//            }
-//
-//        }
+        //        let QuizeObj = QuizeListDic[indexPath.row] as! NSDictionary
+        //
+        //        if isQuizListTable {
+        //            let quizeID : String = QuizeObj["quiz_id"] as! String
+        //            let stringQuizeID = "\(quizeID)"
+        //            print(stringQuizeID)
+        //            UserDefaults.standard.set(stringQuizeID, forKey: "quizeID")
+        //            if QuizeObj["quiz_status"] as? String == "take_now" {
+        //                self.performSegue(withIdentifier: "QuizListToStartQuizViewSegue", sender: self)
+        //            }
+        //        }else {
+        //            print("\n Go to Assignment View quizAssignmentToStartAssignmentViewCtrlrSegue")
+        //            let assignmentID : String = QuizeObj["assign_id"] as! String
+        //            let stringassignmentID = "\(assignmentID)"
+        //            print(stringassignmentID)
+        //            UserDefaults.standard.set(stringassignmentID, forKey: "assignmentID")
+        //
+        //            if QuizeObj["status"] as? String == "take_now" {
+        //                self.performSegue(withIdentifier: "quizAssignToStartAssigntViewCtrlrSegue", sender: self)
+        //            }
+        //
+        //        }
     }
     
     
@@ -375,7 +375,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         DispatchQueue.main.async {
             if(sender.tag == 0) {
-                 // Start quiz/Assignment
+                // Start quiz/Assignment
                 if self.isQuizListTable {
                     
                     if QuizeObj["quiz_id"] as? String != nil {
@@ -403,33 +403,33 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }else if(sender.tag == 1) {
                 // view quiz/Assignment answers
-                    if self.isQuizListTable {
-                        if QuizeObj["quiz_id"] as? String != nil {
-                            let quizeID : String = QuizeObj["quiz_id"] as! String
-                            let stringQuizeID = "\(quizeID)"
-                            print(stringQuizeID)
-                            UserDefaults.standard.set(stringQuizeID, forKey: "quizeID")
-                            if QuizeObj["quiz_status"] as? String == "submitted" {
-                                self.performSegue(withIdentifier: "fromQuizListToQuizViewAnsAegue", sender: self)
-                            }
-                        }
-                    }else {
-                        print("\n Go to Assignment View for submitted Answer")
-                        let assignmentID : String = QuizeObj["assign_id"] as! String
-                        let stringassignmentID = "\(assignmentID)"
-                        print(stringassignmentID)
-                        UserDefaults.standard.set(stringassignmentID, forKey: "assignmentID")
-                        
-                        
-                        if QuizeObj["status"] as? String == "submitted" {
-                            UserDefaults.standard.set("false", forKey: "isEditable")
-                            self.performSegue(withIdentifier: "quizAssignToStartAssigntViewCtrlrSegue", sender: self)
+                if self.isQuizListTable {
+                    if QuizeObj["quiz_id"] as? String != nil {
+                        let quizeID : String = QuizeObj["quiz_id"] as! String
+                        let stringQuizeID = "\(quizeID)"
+                        print(stringQuizeID)
+                        UserDefaults.standard.set(stringQuizeID, forKey: "quizeID")
+                        if QuizeObj["quiz_status"] as? String == "submitted" {
+                            self.performSegue(withIdentifier: "fromQuizListToQuizViewAnsAegue", sender: self)
                         }
                     }
+                }else {
+                    print("\n Go to Assignment View for submitted Answer")
+                    let assignmentID : String = QuizeObj["assign_id"] as! String
+                    let stringassignmentID = "\(assignmentID)"
+                    print(stringassignmentID)
+                    UserDefaults.standard.set(stringassignmentID, forKey: "assignmentID")
                     
+                    
+                    if QuizeObj["status"] as? String == "submitted" {
+                        UserDefaults.standard.set("false", forKey: "isEditable")
+                        self.performSegue(withIdentifier: "quizAssignToStartAssigntViewCtrlrSegue", sender: self)
+                    }
                 }
-            
+                
             }
+            
+        }
         
     }
     
@@ -450,18 +450,18 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 DispatchQueue.main.async {
                     self.activityProgress.stopAnimating()
                     self.tableView.reloadData()
-//                    print("\n \n ## QuizeList List \(self.QuizeListDic as! [Any])")
+                    //                    print("\n \n ## QuizeList List \(self.QuizeListDic as! [Any])")
                     if self.QuizeListDic.count < 1 {
                         self.listHeddingLabel.text = "No Quizzes Found For You"
                     }
                 }
             }else{
                 
-                    DispatchQueue.main.async {
-                       self.listHeddingLabel.text = "No Quizzes Found For You"
-                       self.QuizeListDic.removeAll()
-                       self.tableView.reloadData()
-                    }
+                DispatchQueue.main.async {
+                    self.listHeddingLabel.text = "No Quizzes Found For You"
+                    self.QuizeListDic.removeAll()
+                    self.tableView.reloadData()
+                }
                 self.showToast(message: (ResDictionary["message"] as? String)!)
             }
         }
@@ -502,13 +502,13 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

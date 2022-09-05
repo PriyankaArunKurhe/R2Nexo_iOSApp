@@ -11,7 +11,6 @@ import YouTubePlayer
 
 class FeedHomeTableViewCell: UITableViewCell {
     
-    
     @IBOutlet var backgroundCardView: UIView!
     @IBOutlet var feedPostedByProfilePic: UIImageView!
     @IBOutlet var feedPostedByNameLabel: UILabel!
@@ -33,24 +32,24 @@ class FeedHomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-  
-//    override var frame: CGRect {
-//        get {
-//            return super.frame
-//        }
-//        set (newFrame) {
-//            var frame =  newFrame
-//            frame.origin.y += 4
-//            frame.size.height -= 2 * 5
-//            super.frame = frame
-//        }
-//    }
+    
+    //    override var frame: CGRect {
+    //        get {
+    //            return super.frame
+    //        }
+    //        set (newFrame) {
+    //            var frame =  newFrame
+    //            frame.origin.y += 4
+    //            frame.size.height -= 2 * 5
+    //            super.frame = frame
+    //        }
+    //    }
     
     override func layoutSubviews() {
         
@@ -75,17 +74,13 @@ class FeedHomeTableViewCell: UITableViewCell {
         feedPostedTimeLabel.textColor = UIColor.r2_Sub_Text_Color
         feedPostedByNameLabel.textColor = UIColor.r2_Nav_Bar_Color
         
-//        feedPostedByProfilePic.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleBottomMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue) | UInt8(UIViewAutoresizing.flexibleRightMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleLeftMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleTopMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleWidth.rawValue)))
+        //        feedPostedByProfilePic.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleBottomMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue) | UInt8(UIViewAutoresizing.flexibleRightMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleLeftMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleTopMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleWidth.rawValue)))
         
         feedPostedByProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
         feedPostedByProfilePic.layer.cornerRadius = feedPostedByProfilePic.frame.size.width / 2
         feedPostedByProfilePic.clipsToBounds = true
-        
-        
-        
-//        feedPostedPicImageView.frame = CGRect(x:feedPostedDescLabel.frame.origin.x,y:feedPostedDescLabel.frame.origin.y+feedPostedDescLabel.frame.height,width:self.contentView.frame.width,height:self.contentView.frame.width)
-//        feedPostedPicImageView.layer.masksToBounds = true
-        
+                
+        //        feedPostedPicImageView.frame = CGRect(x:feedPostedDescLabel.frame.origin.x,y:feedPostedDescLabel.frame.origin.y+feedPostedDescLabel.frame.height,width:self.contentView.frame.width,height:self.contentView.frame.width)
+        //        feedPostedPicImageView.layer.masksToBounds = true
     }
-
 }

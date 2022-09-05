@@ -97,11 +97,11 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         
         getQuizeQuestionList()
         
-//        self.questionBackgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "quiz_curve_bk")!)
-       
+        //        self.questionBackgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "quiz_curve_bk")!)
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -124,7 +124,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         doneToolbar.barStyle       = UIBarStyle.default
         let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
-//        done.tintColor = UIColor.r2_Nav_Bar_Color
+        //        done.tintColor = UIColor.r2_Nav_Bar_Color
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
@@ -138,9 +138,9 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if (textView.text != nil && textView.text != " ") {
-//            self.sendCommentButton.isHidden = false
+            //            self.sendCommentButton.isHidden = false
         }else{
-//            self.sendCommentButton.isHidden = true
+            //            self.sendCommentButton.isHidden = true
         }
         return true
     }
@@ -236,7 +236,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         optionDButton4.layer.borderColor = UIColor.r2_faintGray.cgColor
     }
     
-
+    
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -246,7 +246,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         self.view.window!.layer.add(transition, forKey: nil)
         dismiss(animated: true, completion: nil)
     }
-   
+    
     
     // MARK: - Select Option button
     
@@ -308,11 +308,11 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         let questionAttempt = "1"
         print("\n \n selected answer details \(selectedAns) , \(questionID), \(questionSeen) , \(questionAttempt)")
         let dictionary = ["question_id":"\(questionID)",
-            "answer_text":"\(selectedAns)",
-            "seen":"\(questionSeen)",
-            "attempt":"\(questionAttempt)"]
+                          "answer_text":"\(selectedAns)",
+                          "seen":"\(questionSeen)",
+                          "attempt":"\(questionAttempt)"]
         
-//        myAnswersArray.insert(dictionary as [String : AnyObject], at: queIndex)
+        //        myAnswersArray.insert(dictionary as [String : AnyObject], at: queIndex)
         
         myAnswersArray[queIndex] = (dictionary as [String : AnyObject])
         
@@ -341,9 +341,9 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         let questionAttempt = "1"
         print("\n \n selected answer details \(selectedAns) , \(questionID), \(questionSeen) , \(questionAttempt)")
         let dictionary = ["question_id":"\(questionID)",
-            "answer_text":"\(selectedAns)",
-            "seen":"\(questionSeen)",
-            "attempt":"\(questionAttempt)"]
+                          "answer_text":"\(selectedAns)",
+                          "seen":"\(questionSeen)",
+                          "attempt":"\(questionAttempt)"]
         myAnswersArray[essayIndex] = (dictionary as [String : AnyObject])
         
         print("\n answer dic after essay added : \(myAnswersArray as AnyObject)")
@@ -371,7 +371,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
                 
                 DispatchQueue.main.async {
                     self.activityProgress.stopAnimating()
-                   
+                    
                     var tempQuizeQueObj:NSDictionary!
                     for i in 0..<self.QuizeQuestionListDic.count {
                         tempQuizeQueObj = self.QuizeQuestionListDic[i] as! NSDictionary
@@ -382,9 +382,9 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
                         let questionAttempt = "0"
                         
                         let dictionary = ["question_id":"\(questionID)",
-                            "answer_text":"",
-                            "seen":"\(questionSeen)",
-                            "attempt":"\(questionAttempt)"]
+                                          "answer_text":"",
+                                          "seen":"\(questionSeen)",
+                                          "attempt":"\(questionAttempt)"]
                         self.myAnswersArray.insert(dictionary as [String : AnyObject], at: i)
                     }
                     
@@ -460,7 +460,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
                     self.essayConatinerView.isHidden = false
                     self.essayConatinerView.fadeTransition(0.4)
                     self.hideOptionlabels()
-//                    self.addSelectedAnsToAnsArray(optionnumber: 5 )
+                    //                    self.addSelectedAnsToAnsArray(optionnumber: 5 )
                 }
                 
                 if self.queIndex+1 == self.QuizeQuestionListDic.count {
@@ -596,42 +596,42 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     
     func submitAnswers() {   // to submit quiz with ans
         
-//            DispatchQueue.main.async {
-//                if self.queIndex+1 == self.QuizeQuestionListDic.count && self.quizHasEssay == "True" && self.QuizeQueObj["question_type"] as? String == "Essay"{
-//                    self.addSelectedAnsToAnsArray(optionnumber: 5)
-//                }
-//            }
-//
-//        let when = DispatchTime.now() + 3
-//        DispatchQueue.main.asyncAfter(deadline: when) {
+        //            DispatchQueue.main.async {
+        //                if self.queIndex+1 == self.QuizeQuestionListDic.count && self.quizHasEssay == "True" && self.QuizeQueObj["question_type"] as? String == "Essay"{
+        //                    self.addSelectedAnsToAnsArray(optionnumber: 5)
+        //                }
+        //            }
+        //
+        //        let when = DispatchTime.now() + 3
+        //        DispatchQueue.main.asyncAfter(deadline: when) {
         
-            let rawDataStr: String = "data={\"email\":\"\(self.userName)\",\"password\":\"\(self.userPassword)\",\"quiz_rating\":\"\(4)\",\"quiz_id\": \"\(self.quizID)\",\"answers\":\(self.myAnswersArray.toJSONString())}" as String
-            
-            print("\n Submit Quiz param: ",rawDataStr)
-            
-            self.PostAPIWithParam(apiName: "submit_quiz", paramStr: rawDataStr as NSString){  ResDictionary in
-                print("\n Result Dictionary: ",ResDictionary)
-                let statusVal = ResDictionary["status"] as? String
-                print("\n response from Quiz: ",(ResDictionary["message"] as? String)!)
-                DispatchQueue.main.async {
-                    if statusVal == "success"{
-                        self.quizEssayTextView.text = "Start typing here.."
-                        self.quizEssayTextView.textColor = UIColor.lightGray
-                        self.quizEssayTextView.endEditing(true)
-                        
-                        let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
-                            self.dismiss(animated: true, completion: nil)
-                        }))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    self.showToast(message: (ResDictionary["message"] as? String)!)
+        let rawDataStr: String = "data={\"email\":\"\(self.userName)\",\"password\":\"\(self.userPassword)\",\"quiz_rating\":\"\(4)\",\"quiz_id\": \"\(self.quizID)\",\"answers\":\(self.myAnswersArray.toJSONString())}" as String
+        
+        print("\n Submit Quiz param: ",rawDataStr)
+        
+        self.PostAPIWithParam(apiName: "submit_quiz", paramStr: rawDataStr as NSString){  ResDictionary in
+            print("\n Result Dictionary: ",ResDictionary)
+            let statusVal = ResDictionary["status"] as? String
+            print("\n response from Quiz: ",(ResDictionary["message"] as? String)!)
+            DispatchQueue.main.async {
+                if statusVal == "success"{
+                    self.quizEssayTextView.text = "Start typing here.."
+                    self.quizEssayTextView.textColor = UIColor.lightGray
+                    self.quizEssayTextView.endEditing(true)
+                    
+                    let alert = UIAlertController(title: (ResDictionary["message"] as? String)!, message: "", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
+                self.showToast(message: (ResDictionary["message"] as? String)!)
             }
-            
-//        }
+        }
         
- 
+        //        }
+        
+        
         
     }
     
@@ -669,29 +669,29 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         dataTask.resume()
     }
     
-   
+    
     
     
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 
 extension Collection where Iterator.Element == [String:AnyObject] {
     func toJSONString(options: JSONSerialization.WritingOptions = .prettyPrinted) -> String {
         if let arr = self as? [[String:AnyObject]],
-            let dat = try? JSONSerialization.data(withJSONObject: arr, options: options),
-            let str = String(data: dat, encoding: String.Encoding.utf8) {
+           let dat = try? JSONSerialization.data(withJSONObject: arr, options: options),
+           let str = String(data: dat, encoding: String.Encoding.utf8) {
             return str
         }
         return "[]"

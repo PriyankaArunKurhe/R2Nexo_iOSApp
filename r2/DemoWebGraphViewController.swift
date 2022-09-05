@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
+import WebKit
 class DemoWebGraphViewController: UIViewController,UIWebViewDelegate,UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,9 @@ class DemoWebGraphViewController: UIViewController,UIWebViewDelegate,UIGestureRe
         
 //        let newURL
         let requestObj = NSURLRequest(url: url! as URL)
-        webView.loadRequest(requestObj as URLRequest)
+        webView.load(requestObj as URLRequest)
        
     }
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,14 +36,11 @@ class DemoWebGraphViewController: UIViewController,UIWebViewDelegate,UIGestureRe
         }
     }
     
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
-    
-    
     /*
     // MARK: - Navigation
 

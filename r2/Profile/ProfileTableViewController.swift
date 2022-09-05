@@ -15,48 +15,33 @@ class ProfileTableViewController: UITableViewController {
     
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
-    
     var profileDict: NSDictionary!
-    
-    
-    
     @IBOutlet var profileTableView: UITableView!
     @IBOutlet var batchComanyImage: UIImageView!
     @IBOutlet var ProfileImageView: UIImageView!
     @IBOutlet var profileNameLbl: UILabel!
     @IBOutlet var bookmarkCountLbl: UILabel!
-    
     @IBOutlet var logoutLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // #c96877 rgb(201,104,119) logout button color
-//        self.tableView.separatorColor = UIColor.lightGray
-        
+        //        self.tableView.separatorColor = UIColor.lightGray
         logoutLabel.textColor = UIColor(red: 208/255.0, green: 29.0/255.0, blue: 28.0/255.0, alpha: 1.0)
-        
         self.activityProgress.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.50)
         self.view.addSubview(activityProgress)
-        
         let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBackScreen))
         rightGesture.direction = .right
         self.view.addGestureRecognizer(rightGesture)
-        
-//        refreshControl?.attributedTitle = NSAttributedString(string: "Wait reloading..")
-//        refreshControl?.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
-//        tableView.addSubview(refreshControl!)
-        
+        //        refreshControl?.attributedTitle = NSAttributedString(string: "Wait reloading..")
+        //        refreshControl?.addTarget(self, action: #selector(self.refresh), for:      UIControlEvents.valueChanged)
+        //        tableView.addSubview(refreshControl!)
         self.getProfileInfo()
-        
         ProfileImageView.contentMode = UIView.ContentMode.scaleToFill
         ProfileImageView.layer.cornerRadius = ProfileImageView.frame.size.width / 2
         ProfileImageView.clipsToBounds = true
-        
         bookmarkCountLbl.backgroundColor = UIColor.r2_Nav_Bar_Color
         bookmarkCountLbl.layer.cornerRadius = bookmarkCountLbl.frame.width/2
-       
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -72,25 +57,21 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.activityProgress.removeFromSuperview() 
+        self.activityProgress.removeFromSuperview()
     }
     
     @objc func swipeToBackScreen(sender:UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 3
     }
-    
-//    @objc func refresh(){
-//        self.getProfileInfo()
-////        refreshControl?.endRefreshing()
-//    }
-    
+    //    @objc func refresh(){
+    //        self.getProfileInfo()
+    ////        refreshControl?.endRefreshing()
+    //    }
     
     func logout() {
-        
         DispatchQueue.main.async {
             self.activityProgress.startAnimating()
         }
-        
         let rawDataStr: NSString = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\"}" as NSString
         self.parsePostAPIWithParam(apiName: "logout", paramStr: rawDataStr){  ResDictionary in
             let statusVal = ResDictionary["status"] as? String
@@ -103,7 +84,6 @@ class ProfileTableViewController: UITableViewController {
         }
         
     }
-    
     
     func getProfileInfo() {
         
@@ -119,7 +99,7 @@ class ProfileTableViewController: UITableViewController {
                     self.activityProgress.stopAnimating()
                     self.profileDict = (ResDictionary["data"] as! NSDictionary)
                     print("\n \n PPP ",self.profileDict["student_first_name"] as! String)
-
+                    
                     let fullName = "\(self.profileDict["student_first_name"] as! String) \(self.profileDict["student_last_name"] as! String)"
                     self.profileNameLbl.text = fullName
                     
@@ -135,7 +115,6 @@ class ProfileTableViewController: UITableViewController {
                     studPicUrl = (self.profileDict!["student_picture_url"] as? String)!
                     let studProfilePicURL = "\(Constants.r2_baseURL)\("/")\(studPicUrl)"
                     UserDefaults.standard.set(studProfilePicURL, forKey: "user_profile_pic_URL")
-                    
                     self.bookmarkCountLbl.text = self.profileDict["bookmark_count"] as? String
                     self.ProfileImageView.downloadedFrom(url: URL(string: profileImageURL)!)
                     self.ProfileImageView.contentMode = UIView.ContentMode.scaleAspectFill
@@ -167,7 +146,7 @@ class ProfileTableViewController: UITableViewController {
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -177,15 +156,12 @@ class ProfileTableViewController: UITableViewController {
         })
         dataTask.resume()
     }
-    
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 7
@@ -218,76 +194,70 @@ class ProfileTableViewController: UITableViewController {
             alertController.addAction(CancelAction)
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion: nil)
-            
-            
         }
     }
-    
     
     func signOut() {      // for signout
         UserDefaults.standard.removeObject(forKey:"userID")
         UserDefaults.standard.removeObject(forKey:"userPassword")
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "SignInViewSID") as! SignInViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
         self.presentAlertWithOkButton(withTitle: "You logged out successfully", message: "")
     }
-
     /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+     
+     // Configure the cell...
+     
+     return cell
+     }
+     */
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

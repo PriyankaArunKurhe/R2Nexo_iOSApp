@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileTopTableViewCell: UITableViewCell {
-
+    
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var profileNameLabel: UILabel!
@@ -22,11 +22,11 @@ class ProfileTopTableViewCell: UITableViewCell {
         profileImageView.clipsToBounds = true
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

@@ -18,7 +18,7 @@ class QuizeListTableViewCell: UITableViewCell {
     
     @IBOutlet var quizScoreLabel: UILabel!
     
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -53,12 +53,12 @@ class QuizeListTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        self.selectedBackgroundView!.backgroundColor = selected ? .clear : nil
-
+        //        self.selectedBackgroundView!.backgroundColor = selected ? .clear : nil
+        
         // Configure the view for the selected state
     }
-
+    
 }

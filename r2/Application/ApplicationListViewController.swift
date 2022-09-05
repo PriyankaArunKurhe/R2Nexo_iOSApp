@@ -4,27 +4,18 @@
 //
 //  Created by NonStop io on 15/01/18.
 //  Copyright © 2018 NonStop io. All rights reserved.
-//
 
 import UIKit
 import NVActivityIndicatorView
 
 class ApplicationListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    
     @IBOutlet var tableView: UITableView!
-    
     @IBOutlet var listHeddingLabel: UILabel!
-    
-    
     var ApplicationListDic:[Any] = []
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
-    
-    
     let activityProgress = NVActivityIndicatorView(frame: CGRect(x: (UIScreen.main.bounds.size.width/2) - 25.0, y: (UIScreen.main.bounds.size.height/2) - 25.0, width: 51, height: 51), type: NVActivityIndicatorType.ballScaleRippleMultiple, color: UIColor.r2_Nav_Bar_Color)
     let refreshControl = UIRefreshControl()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,12 +29,10 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
         self.getApplicationList()
         // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -132,9 +121,6 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
         return cell
         
     }
-    
-    
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         
         self.dismiss(animated: false, completion: nil)
@@ -228,7 +214,7 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse!)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -238,7 +224,6 @@ class ApplicationListViewController: UIViewController,UITableViewDataSource,UITa
         })
         dataTask.resume()
     }
-    
     
     /*
     // MARK: - Navigation

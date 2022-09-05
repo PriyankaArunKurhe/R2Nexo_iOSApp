@@ -9,10 +9,8 @@
 import UIKit
 //import SwiftOCR
 //import TesseractOCR
-
-
 class MeditationViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     var circleLayer: CAShapeLayer!
     var pause = false
     
@@ -25,14 +23,9 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
     
     var pickerController = UIImagePickerController()
     var imageView = UIImage()
-    
     var circle2X: CGFloat = 0.0
     var circle2Y: CGFloat = 0.0
-    
-    
-//    let swiftOCRInstance = SwiftOCR()
-    
-    
+    //    let swiftOCRInstance = SwiftOCR()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,13 +49,8 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         
         innerCircleView1.layer.borderColor = UIColor.lightGray.cgColor
         innerCircleView1.layer.borderWidth = 1.0
-        
-        
-        
-        
         // Do any additional setup after loading the view.
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         
         //        self.circleView.transform = CGAffineTransform(scaleX: 0, y: 0)
@@ -76,7 +64,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         //                self.circleView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         //            }, completion: {(isCompleted) in
         ////                        let circleWidth = self.circleView.frame.size.width
-        ////                        let circleHeight = circleWidth
+        ////let circleHeight = circleWidth
         ////                        let circleView = CircleClosing(frame: CGRect(x: self.circleView.frame.origin.x-2.5, y: self.circleView.frame.origin.y-2.5, width: circleWidth+5, height: circleHeight+5))
         ////                        self.view.addSubview(circleView)
         ////                        circleView.animateCircle(duration: 3.0)
@@ -86,14 +74,11 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         //        })
         
         self.startBreathing()
-        
     }
-    
-    
     
     func startBreathing()  {
         let layer = self.circleView.layer
-        //            self.resumeLayer(layer: layer)
+        //  self.resumeLayer(layer: layer)
         
         self.circleView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         UIView.animate(withDuration: 4, delay: 0, options: [], animations: {
@@ -112,11 +97,11 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
                     if finished {
                         self.startBreathing()
                     }
-//                    print("\n complition of animatiom circle 1")
+                    //                    print("\n complition of animatiom circle 1")
                     
                 })
             }
-//            print("\n complition of animatiom circle 2")
+            //            print("\n complition of animatiom circle 2")
             self.instructionLabel.alpha = 1
             let circleView = CircleClosing(frame: CGRect(x: self.circle2X-2.5, y: self.circle2Y-2.5, width: 205, height: 205))
             self.view.addSubview(circleView)
@@ -142,10 +127,7 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         let circleView = CircleClosing(frame: CGRect(x: self.innerCircleView1.frame.origin.x-2.5, y: self.innerCircleView1.frame.origin.y-2.5, width: 85, height: 85))
         self.view.addSubview(circleView)
         circleView.animateCircle(duration: 4.0)
-        
- 
     }
-    
     
     @IBAction func buttonTouch(_ sender: Any) {
         let layer = self.circleView.layer
@@ -177,14 +159,9 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     @IBAction func captureImageButtonTouch(_ sender: Any) {
-        
         openCamera()
-        
     }
-    
     
     func openCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
@@ -204,50 +181,46 @@ class MeditationViewController: UIViewController,UIImagePickerControllerDelegate
         capturedImageView.contentMode = .scaleAspectFit
         capturedImageView.image = imageView
         
-//        swiftOCRInstance.recognize(capturedImageView.image!) { recognizedString in
-//            print("\n capture image OCR string: \(recognizedString)")
-//            self.presentAlertWithOkButton(withTitle: "\n capture image OCR string: \(recognizedString)", message: "")
-//        }
+        //        swiftOCRInstance.recognize(capturedImageView.image!) { recognizedString in
+        //            print("\n capture image OCR string: \(recognizedString)")
+        //            self.presentAlertWithOkButton(withTitle: "\n capture image OCR string: \(recognizedString)", message: "")
+        //        }
         
         
         
-//        var tesseract:G8Tesseract = G8Tesseract(language:"eng+ita")
-//        //tesseract.language = "eng+ita"
-//        tesseract.delegate = self
-//        tesseract.charWhitelist = "01234567890"
-//        tesseract.image = info[UIImagePickerControllerEditedImage] as! UIImage
-//        tesseract.recognize()
-//        print(tesseract.recognizedText)
-//        self.presentAlertWithOkButton(withTitle: "\n capture image OCR string: \(tesseract.recognizedText)", message: "")
+        //        var tesseract:G8Tesseract = G8Tesseract(language:"eng+ita")
+        //        //tesseract.language = "eng+ita"
+        //        tesseract.delegate = self
+        //        tesseract.charWhitelist = "01234567890"
+        //        tesseract.image = info[UIImagePickerControllerEditedImage] as! UIImage
+        //        tesseract.recognize()
+        //        print(tesseract.recognizedText)
+        //        self.presentAlertWithOkButton(withTitle: "\n capture image OCR string: \(tesseract.recognizedText)", message: "")
         
         dismiss(animated:true, completion: nil)
     }
     
-//    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
-//        return false // return true if you need to interrupt tesseract before it finishes
-//    }
+    //    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
+    //        return false // return true if you need to interrupt tesseract before it finishes
+    //    }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Cancel")
         dismiss(animated:true, completion: nil)
     }
     
-    
-    
     @IBAction func backButtonTouch(_ sender: Any) {
-        
         self.dismiss(animated: false, completion: nil)
-        
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

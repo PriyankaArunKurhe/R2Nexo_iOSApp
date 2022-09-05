@@ -54,16 +54,13 @@ class ChangePasswordViewController: UIViewController {
         let attributeString = NSMutableAttributedString(string: "Update",
                                                         attributes: forgotBtnAttrs)
         changePasswordBtn.setAttributedTitle(attributeString, for: .normal)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
     
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
@@ -76,9 +73,7 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
-    
     @IBAction func ChangePasswordButtonTouch(_ sender: Any) {
-        
         
         if confirmPassword.text == newPasswordTextField.text {
             let alertController = UIAlertController(title: "Would You Like To Change Password?", message: "OK to confirm", preferredStyle: .alert)
@@ -97,7 +92,6 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func changePassword() {
-        
         
         let newPassword = self.confirmPassword.text
         var confirmedPass = ""
@@ -140,10 +134,9 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
-    
     @IBAction func UpdateProfile(_ sender: Any) {
         
-        let imageProfCompressed = self.DemoCircleImageView.image?.resizeWith(width: 151)        
+        let imageProfCompressed = self.DemoCircleImageView.image?.resizeWith(width: 151)
         let imageProf = imageProfCompressed!.pngData()
         var imageProfStr = imageProf?.base64EncodedString()
         imageProfStr = imageProfStr?.replacingOccurrences(of: " ", with: "\n")
@@ -184,7 +177,7 @@ class ChangePasswordViewController: UIViewController {
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse!)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -198,23 +191,17 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func backButtonTouch(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
-        
-        
+
     }
-    
-    
-    
-    
-    
 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

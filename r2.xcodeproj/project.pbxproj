@@ -639,6 +639,8 @@
 				Base,
 			);
 			mainGroup = 516B7C171F9726D100EADC4B;
+			packageReferences = (
+			);
 			productRefGroup = 516B7C211F9726D100EADC4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1049,6 +1051,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;

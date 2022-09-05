@@ -11,30 +11,17 @@ import UIKit
 class BoostMeViewController: UIViewController {
     
     @IBOutlet var profilePicImageView: UIImageView!
-    
     @IBOutlet var nameLabel: UILabel!
-    
     @IBOutlet var companyCoverImage: UIImageView!
-    
-    
     @IBOutlet var pointsLabel: UILabel!
-    
     @IBOutlet var instructionLabel: UILabel!
-    
-    
     @IBOutlet var takeQuizButton: UIButton!
-    
     @IBOutlet var completeAssignButton: UIButton!
-    
     @IBOutlet var readArticlBtn: UIButton!
-    
-    
     @IBOutlet var expertQuizBtn: UIButton!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         nameLabel.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size))
         
         instructionLabel.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size-2))
@@ -75,67 +62,53 @@ class BoostMeViewController: UIViewController {
         
         nameLabel.text = "\(UserDefaults.standard.string(forKey: "user_first_name")! as String) \(UserDefaults.standard.string(forKey: "user_last_name")! as String)"
         profilePicImageView.sd_setImage(with: URL(string: UserDefaults.standard.string(forKey: "user_profile_pic_URL")! as String), placeholderImage: UIImage(named: "default_user.png"))
-        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func takePendingQuizButtonTouch(_ sender: Any) {
-    
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarSID") as! UITabBarController
         vc.selectedIndex = 2
         UserDefaults.standard.set(true, forKey: "isQuizList")
         self.present(vc, animated: true, completion: nil)
-    
     }
     
-    
     @IBAction func completeAssignmentBtnTouch(_ sender: Any) {
-        
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarSID") as! UITabBarController
         vc.selectedIndex = 2
         UserDefaults.standard.set(false, forKey: "isQuizList")
         self.present(vc, animated: true, completion: nil)
-        
     }
     
-    
     @IBAction func readArticleBtnTouch(_ sender: Any) {
-        
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarSID") as! UITabBarController
         vc.selectedIndex = 1
         UserDefaults.standard.set(false, forKey: "isQuizList")
         self.present(vc, animated: true, completion: nil)
-        
-        
     }
     
     @IBAction func backButtonTouch(_ sender: Any) {
-        
         self.dismiss(animated: false, completion: nil)
     }
     
-    
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
-
 
 @IBDesignable
 class DoubleImageButton: UIButton {

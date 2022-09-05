@@ -19,14 +19,12 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet var showDataLabel: UILabel!
     @IBOutlet var getProfileInfoButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getProfileInfo()
-        
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillAppear(_ animated: Bool){
         userName = UserDefaults.standard.string(forKey: "userID")! as String
         userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
@@ -47,9 +45,9 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
         
         if indexPath.row == 0 {
             cell1.profileNameLabel.text = "Rauf Shaikh"
-//            if self.profileDict.count > 0 {
-//               cell1.profileNameLabel.text = self.profileDict["student_first_name"] as? String
-//            }
+            //            if self.profileDict.count > 0 {
+            //               cell1.profileNameLabel.text = self.profileDict["student_first_name"] as? String
+            //            }
             return cell1
         }else{
             if indexPath.row == 1 {
@@ -64,11 +62,11 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//
-//        return 200.0
-//
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //
+    //        return 200.0
+    //
+    //    }
     
     @IBAction func getProfileInfoButtonTouch(_ sender: Any) {
         self.performSegue(withIdentifier: "ProfileInfoToUpdatePassword", sender: self)
@@ -129,18 +127,14 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
         })
         dataTask.resume()
     }
-    
-    
-    
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

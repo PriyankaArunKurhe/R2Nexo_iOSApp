@@ -35,12 +35,8 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         
         batchTitleLabel.font = UIFont (name: Constants.r2_bold_font, size: CGFloat(Constants.r2_font_size))
         batchTitleLabel.tintColor = UIColor.black
-        
-
         // Do any additional setup after loading the view.
     }
-
-    
     
     @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
         let transition: CATransition = CATransition()
@@ -57,7 +53,6 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func getBatchDetail()  {        // get batch detail
         
@@ -85,7 +80,6 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         }
     }
     
-    
     func PostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
         var convertedJsonDictResponse:NSDictionary!
         let dataStr: NSString = paramStr
@@ -108,7 +102,7 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse!)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -118,7 +112,6 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         })
         dataTask.resume()
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.batchDic.count
@@ -141,12 +134,12 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         return Bcell
     }
     
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-//        let widthSize = collectionView.frame.size.width / 2
-//        return CGSize(width: widthSize, height: widthSize)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView,
+    //                        layout collectionViewLayout: UICollectionViewLayout,
+    //                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    //        let widthSize = collectionView.frame.size.width / 2
+    //        return CGSize(width: widthSize, height: widthSize)
+    //    }
     
     @objc func imageTappedForZoom(_ sender: UITapGestureRecognizer) {  // zoom image
         
@@ -161,7 +154,6 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         zoomVC.didMove(toParent: self)
     }
     
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -172,15 +164,13 @@ class MyBatchViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.dismiss(animated: true, completion: nil)
     }
     
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

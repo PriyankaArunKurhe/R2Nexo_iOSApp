@@ -23,16 +23,16 @@ class ViewMoreViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        let screenSize: CGRect = UIScreen.main.bounds
-//        feedImageView.frame = CGRect(x: 10, y: feedDescTextView.frame.origin.y+feedDescTextView.frame.size.height+10, width: screenSize.width-10, height: screenSize.width-10)
+        //        let screenSize: CGRect = UIScreen.main.bounds
+        //        feedImageView.frame = CGRect(x: 10, y: feedDescTextView.frame.origin.y+feedDescTextView.frame.size.height+10, width: screenSize.width-10, height: screenSize.width-10)
         feedsImageViewHeightOutlet.constant = 300.0
         
-//        commentTableView.frame = CGRect(x: commentTableView.frame.origin.x, y: commentTableView.frame.origin.y, width: commentTableView.frame.size.width, height: commentTableView.contentSize.height)
+        //        commentTableView.frame = CGRect(x: commentTableView.frame.origin.x, y: commentTableView.frame.origin.y, width: commentTableView.frame.size.width, height: commentTableView.contentSize.height)
         
         commentTableViewHeightOutlet.constant = commentTableView.contentSize.height
         self.commentTableView.scrollToRow(at: IndexPath (row:99,section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +64,6 @@ class ViewMoreViewController: UIViewController,UITableViewDelegate,UITableViewDa
         print("You tapped cell number \(indexPath.row).")
     }
     
-    
     @IBAction func backButtonTouch(_ sender: Any) {
         let transition: CATransition = CATransition()
         transition.duration = 0.5
@@ -76,17 +75,11 @@ class ViewMoreViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     /*
-    // MARK: - Navigation
-
-     
-     
-     
-     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
