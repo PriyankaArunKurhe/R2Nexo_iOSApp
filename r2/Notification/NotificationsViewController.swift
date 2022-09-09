@@ -243,7 +243,6 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         })
         dataTask.resume()
     }
-    
     /*
      // MARK: - Navigation
      
@@ -253,5 +252,4 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
      // Pass the selected object to the new view controller.
      }
      */
-    
 }

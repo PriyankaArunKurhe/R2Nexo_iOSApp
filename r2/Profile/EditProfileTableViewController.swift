@@ -99,7 +99,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func imagePickerController(_ picker: UIImagePickerController,
+     private func imagePickerController(_ picker: UIImagePickerController,
                                      didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         var  chosenImage = UIImage()
@@ -126,7 +126,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                 if statusVal == "success"{
                     self.activityProgress.stopAnimating()
                     print("\n success in get profile ", ResDictionary)
-                    self.profileDict = ResDictionary["data"] as! NSDictionary
+                    self.profileDict = (ResDictionary["data"] as! NSDictionary)
                     print("\n \n PPP ",self.profileDict["student_first_name"] as! String)
                     let fullName = "\(self.profileDict["student_first_name"] as! String) \(self.profileDict["student_last_name"] as! String)"
                     self.profileNameLbl.text = fullName
@@ -226,7 +226,7 @@ class EditProfileTableViewController: UITableViewController, UIImagePickerContro
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

@@ -239,7 +239,7 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
             if statusVal == "success"{
                 self.QuizeQuestionListDic = (ResDictionary["data"] as! NSArray) as! [Any]
                 
-                self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
+                self.QuizeQueObj = (self.QuizeQuestionListDic[self.queIndex] as! NSDictionary)
                 
                 DispatchQueue.main.async {
                     self.activityProgress.stopAnimating()
@@ -307,7 +307,7 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
         
         if  self.queIndex != self.QuizeQuestionListDic.count - 1 {
             self.queIndex = self.queIndex + 1
-            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
+            self.QuizeQueObj = (self.QuizeQuestionListDic[self.queIndex] as! NSDictionary)
             
             DispatchQueue.main.async {
                 self.setBorderToOptionButtons()
@@ -450,7 +450,7 @@ class ViewQuizAnswersViewController: UIViewController, UITextViewDelegate {
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

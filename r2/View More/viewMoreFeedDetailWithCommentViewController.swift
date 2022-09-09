@@ -5,9 +5,8 @@
 //  Created by NonStop io on 01/11/17.
 //  Copyright © 2017 NonStop io. All rights reserved.
 //
-
 import UIKit
-import YouTubePlayer
+//import YouTubePlayer
 import NVActivityIndicatorView
 
 class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate {
@@ -22,7 +21,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
     var isScrollDownComments : Bool = false
     
     let refreshControl = UIRefreshControl()
-    var postDict:[Any] = []
+    var postDict: [Any] = []
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
     
@@ -352,7 +351,7 @@ class viewMoreFeedDetailWithCommentViewController: UIViewController,UITableViewD
             }
             
             if postObj["is_bookmarked"] as! String == "1"{
-                FeedDescCell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_filled"), for: .normal)
+FeedDescCell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_filled"), for: .normal)
             }else{
                 FeedDescCell.FeedBookmarkButton.setImage(UIImage (named: "btn_bookmark_unfilled"), for: .normal)
             }

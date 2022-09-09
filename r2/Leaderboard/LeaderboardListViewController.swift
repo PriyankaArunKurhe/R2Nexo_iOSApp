@@ -96,7 +96,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
     
     
     
-    @objc func swipeToBackScreen(sender:UISwipeGestureRecognizer) {
+    @objc func swipeToBackScreen(sender: UISwipeGestureRecognizer) {
         self.dismiss(animated: false, completion: nil)
     }
     
@@ -176,7 +176,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
@@ -196,7 +196,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isRankingListTable {
             return ListDic.count
-        }else{
+        } else {
             return 5
         }
     }
@@ -228,11 +228,11 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
                     cell.leadStuRankLabel.backgroundColor = UIColor.r2_Nav_Bar_Color
                     cell.leadStuRankLabel.textColor = UIColor.white
                     cell.backgroundColor = UIColor.r2_faintGray
-                }else{
+                } else {
                     cell.leadStuRankLabel.backgroundColor = UIColor.white
                     if indexPath.row < 3 {
                         cell.leadStuRankLabel.textColor = UIColor.r2_Nav_Bar_Color
-                    }else{
+                    } else {
                         cell.leadStuRankLabel.textColor = UIColor.gray
                     }
                     cell.backgroundColor = UIColor.white
@@ -248,7 +248,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
             }
         
             return cell
-        }else{
+        } else {
             
             badgeCell.imageView?.image = badgeImgArr[indexPath.row]
             badgeCell.badgeNameLabel.text = badgeNameArr[indexPath.row]
@@ -267,7 +267,7 @@ class LeaderboardListViewController: UIViewController,UITableViewDelegate,UITabl
             if(sender.tag == 0) {
 //                self.presentAlertWithOkButton(withTitle: "Boost now!!", message: "(This feature is coming soon)")
                 
-                let popOverVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoostMeProgressSID") as! BoostMeProgrssViewViewController;                UIApplication.shared.keyWindow?.addSubview(popOverVC.view)
+                let popOverVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoostMeProgressSID") as! BoostMeProgrssViewViewController;                UIApplication.shared.keyWindow!.addSubview(popOverVC.view)
                 popOverVC.didMove(toParent: self)
                 
             }

@@ -19,12 +19,12 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
     @IBOutlet var writeNewPostButton: UIButton!
     @IBOutlet var tableView: UITableView!
     var isScrollDownComments : Bool = false
-    var arrRes = [[String:AnyObject]]() //Array of dictionary
-    var postsDict:[Any] = []
+    var arrRes = [[String: AnyObject]]() //Array of dictionary
+    var postsDict: [Any] = []
     var userName = UserDefaults.standard.string(forKey: "userID")! as String
     var userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
     var pageNumber = 1
-    var isDataLoading:Bool=false
+    var isDataLoading: Bool = false
     var pageNumberToBeChanged: Bool = false
     var PostListDic: NSDictionary!
     let refreshControl = UIRefreshControl()
@@ -32,7 +32,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FeedsTextCell")
+        // self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FeedsTextCell")
         self.activityProgress.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.50)
         self.view.addSubview(activityProgress)
         
@@ -45,8 +45,8 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         rightGesture.direction = .right
         self.view.addGestureRecognizer(rightGesture)
         
-        //        UITabBar.appearance().barTintColor = UIColor.black
-        //        UITabBar.appearance().backgroundColor = UIColor.black
+        //  UITabBar.appearance().barTintColor = UIColor.black
+        //  UITabBar.appearance().backgroundColor = UIColor.black
         
         self.navigationController?.navigationBar.barTintColor = UIColor.r2_Nav_Bar_Color
         refreshControl.attributedTitle = NSAttributedString(string: "Wait reloading..")
@@ -100,7 +100,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
         //        }
         self.get_Posts(pageNo:self.pageNumber)
     }
-        
+    
     @objc func swipeToNextScreen(sender:UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
@@ -146,7 +146,7 @@ class FeedsHomeViewController: UIViewController,UITableViewDelegate,UITableViewD
             // Dragging up
             print("\n Dragging up")
             UIView.animate(withDuration: 0.6, delay: 0.4, options:
-                UIView.AnimationOptions.curveEaseOut, animations: {
+                            UIView.AnimationOptions.curveEaseOut, animations: {
                 self.navigationController?.isNavigationBarHidden = true
                 UIApplication.shared.isStatusBarHidden = true
                 self.tabBarController?.tabBar.isHidden = true

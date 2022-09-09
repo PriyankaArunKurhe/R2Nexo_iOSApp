@@ -10,8 +10,8 @@ import Foundation
 struct Constants {
     
     //    static let r2_baseURL = "http://192.168.1.8:1212"
-    //    static let r2_baseURL = "http://192.168.1.13:1212"    // local
-    static let r2_baseURL = "http://13.126.246.118"  // Test Server
+        static let r2_baseURL = "https://e7e3-103-35-134-125.in.ngrok.io"    // local
+   // static let r2_baseURL = "http://13.126.246.118"  // Test Server
     //App Constants
     static let r2_font = "Poppins-Regular"
     static let r2_bold_font = "Poppins-Bold"

@@ -128,7 +128,7 @@ class ChangePasswordViewController: UIViewController {
                 }
             }
             
-        }else{
+        } else {
             self.showToast(message: "Blank Password Not allowed")
         }
         

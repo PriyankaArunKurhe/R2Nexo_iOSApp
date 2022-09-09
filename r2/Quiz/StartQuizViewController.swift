@@ -367,14 +367,14 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
             if statusVal == "success"{
                 self.QuizeQuestionListDic = (ResDictionary["data"] as! NSArray) as! [Any]
                 
-                self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
+                self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as? NSDictionary
                 
                 DispatchQueue.main.async {
                     self.activityProgress.stopAnimating()
                     
                     var tempQuizeQueObj:NSDictionary!
                     for i in 0..<self.QuizeQuestionListDic.count {
-                        tempQuizeQueObj = self.QuizeQuestionListDic[i] as! NSDictionary
+                        tempQuizeQueObj = self.QuizeQuestionListDic[i] as? NSDictionary
                         let intQueID = tempQuizeQueObj["question_id"] as? Int
                         var questionID = ""
                         questionID = "\(intQueID!)"
@@ -439,7 +439,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         
         if  self.queIndex != self.QuizeQuestionListDic.count - 1 {
             self.queIndex = self.queIndex + 1
-            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
+            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as? NSDictionary
             
             DispatchQueue.main.async {
                 self.setBorderToOptionButtons()
@@ -513,7 +513,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
         
         if self.queIndex != 0 {
             self.queIndex = self.queIndex - 1
-            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as! NSDictionary
+            self.QuizeQueObj = self.QuizeQuestionListDic[self.queIndex] as? NSDictionary
             
             DispatchQueue.main.async {
                 self.setBorderToOptionButtons()
@@ -637,7 +637,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
     
     
     func PostAPIWithParam(apiName:NSString, paramStr:NSString,callback: @escaping ((NSDictionary) -> ())) {
-        var convertedJsonDictResponse:NSDictionary!
+        var convertedJsonDictResponse: NSDictionary!
         let dataStr: NSString = paramStr
         let postData = NSMutableData(data: dataStr.data(using: String.Encoding.utf8.rawValue)!)
         let r2_URL = "\(Constants.r2_baseURL)\("/")\(apiName)\("/")"
@@ -658,7 +658,7 @@ class StartQuizViewController: UIViewController,UITextViewDelegate {
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

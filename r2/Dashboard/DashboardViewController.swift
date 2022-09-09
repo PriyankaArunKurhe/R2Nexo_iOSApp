@@ -5,16 +5,14 @@
 //  Created by NonStop io on 05/12/17.
 //  Copyright © 2017 NonStop io. All rights reserved.
 //
-
-
-
 import UIKit
 import UserNotifications
 import Crashlytics
+import WebKit
 
 class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecognizerDelegate, UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UNUserNotificationCenterDelegate {
     
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet var webView: WKWebView!
     @IBOutlet var menuCollectionView: UICollectionView!
     @IBOutlet var leaderboardlabel: UILabel!
     @IBOutlet var backgroundView: UIView!
@@ -32,15 +30,15 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
     var menuCountArr: [String] = ["","","",""]
     var dashboardCountDic: [Any] = []
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-//        let button = UIButton(type: .roundedRect)
-//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-//        button.setTitle("Crash", for: [])
-//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-//        view.addSubview(button)
+        
+        //        let button = UIButton(type: .roundedRect)
+        //        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+        //        button.setTitle("Crash", for: [])
+        //        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+        //        view.addSubview(button)
         
         
         if (UIDevice.current.userInterfaceIdiom == .pad)
@@ -70,7 +68,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         dashboardProfileImageView.layer.cornerRadius = dashboardProfileImageView.frame.size.width / 2
         dashboardProfileImageView.clipsToBounds = true
         
-//        self.backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "dashboard_background")!)
+        //        self.backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "dashboard_background")!)
         
         let width = UIScreen.main.bounds.size.width
         let height = UIScreen.main.bounds.size.height
@@ -100,10 +98,9 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         
         
         UNUserNotificationCenter.current().requestAuthorization(options:
-            [[.alert, .sound, .badge]],
-                                                                completionHandler: { (granted, error) in
-                                                                    // Handle Error
-                                                                    print("\n or in Local Notification")
+    [[.alert, .sound, .badge]],completionHandler: { (granted, error) in
+            // Handle Error
+            print("\n or in Local Notification")
         })
         
         UNUserNotificationCenter.current().delegate = self
@@ -111,29 +108,29 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         // Do any additional setup after loading the view.
     }
     
-//    @objc func crashButtonTapped(_ sender: AnyObject) {
-//        Crashlytics.sharedInstance().crash()
-//    }
+    //    @objc func crashButtonTapped(_ sender: AnyObject) {
+    //        Crashlytics.sharedInstance().crash()
+    //    }
     
     
     override func viewWillAppear(_ animated: Bool) {
-          self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
-//        self.navigationController?.isNavigationBarHidden = true
+        //        self.navigationController?.isNavigationBarHidden = true
         
         let r2_URL = "\(Constants.r2_baseURL)\("/ranking_graph/")\(studID)\("/")"
         print("\n graph URL ",r2_URL)
         let url = NSURL (string: r2_URL)
         let requestObj = NSURLRequest(url: url! as URL)
-        webView.loadRequest(requestObj as URLRequest)
+        webView.load(requestObj as URLRequest)
         
         
-//        dashboardProfileName.text = "\(UserDefaults.standard.string(forKey: "user_first_name")! as String) \(UserDefaults.standard.string(forKey: "user_last_name")! as String)"
-//        dashboardProfileImageView.sd_setImage(with: URL(string: UserDefaults.standard.string(forKey: "user_profile_pic_URL")! as String), placeholderImage: UIImage(named: "default_user.png"))
+        //        dashboardProfileName.text = "\(UserDefaults.standard.string(forKey: "user_first_name")! as String) \(UserDefaults.standard.string(forKey: "user_last_name")! as String)"
+        //        dashboardProfileImageView.sd_setImage(with: URL(string: UserDefaults.standard.string(forKey: "user_profile_pic_URL")! as String), placeholderImage: UIImage(named: "default_user.png"))
         
-//        UIApplication.shared.isStatusBarHidden = true
+        //        UIApplication.shared.isStatusBarHidden = true
         
         userName = UserDefaults.standard.string(forKey: "userID")! as String
         userPassword = UserDefaults.standard.string(forKey: "userPassword")! as String
@@ -141,17 +138,17 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         getNotifications()
         getDashboardCount()
         
-//        self.view.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-//        UIView.animate(withDuration: 5.0, animations: { () -> Void in
-//            self.view.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0);
-//        },
-//                       completion: { finished in
-//                        UIView.animate(withDuration: 5.0, animations: { () -> Void in
-//                            self.view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
-//                        }, completion: { finished in
-//                            //other color do the same
-//                        })
-//        })
+        //        self.view.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        //        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+        //            self.view.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0);
+        //        },
+        //                       completion: { finished in
+        //                        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+        //                            self.view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+        //                        }, completion: { finished in
+        //                            //other color do the same
+        //                        })
+        //        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -183,19 +180,19 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        UIApplication.shared.isStatusBarHidden = false
+        //        UIApplication.shared.isStatusBarHidden = false
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {  // for navigation on notification screen
-    
-    self.tabBarController?.selectedIndex = 3
-    
-    completionHandler()
+        
+        self.tabBarController?.selectedIndex = 3
+        
+        completionHandler()
     }
     
     
@@ -204,12 +201,12 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//
-//        if (scrollView.contentOffset.y < 0){
-//            //reach top
-//            print("\n Reach Top")
-//            webView.reload()
-//        }
+        //
+        //        if (scrollView.contentOffset.y < 0){
+        //            //reach top
+        //            print("\n Reach Top")
+        //            webView.reload()
+        //        }
     }
     
     
@@ -221,8 +218,8 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         
         let DMcell = collectionView.dequeueReusableCell(withReuseIdentifier: "DMCell", for: indexPath as IndexPath) as! DashboardMenuCollectionViewCell
         DMcell.menuBackgroundImage.image = MenuImagesArr[indexPath.row]
-//        DMcell.layer.borderWidth = 2.0
-//        DMcell.layer.borderColor = UIColor.red.cgColor
+        //        DMcell.layer.borderWidth = 2.0
+        //        DMcell.layer.borderColor = UIColor.red.cgColor
         DMcell.menuTitleLabel.text = self.menuTitleArr[indexPath.row]
         
         let attrs : [NSAttributedString.Key: Any] = [
@@ -270,32 +267,32 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
             UserDefaults.standard.set(false, forKey: "isQuizList")
             performSegue(withIdentifier: "DashboardToLeaderboardSegue", sender: self)
         }else if indexPath.row == 3 {
-//            self.tabBarController?.selectedIndex = 1
+            //            self.tabBarController?.selectedIndex = 1
             performSegue(withIdentifier: "DashboardToApplicationListSegue", sender: self)
         }
     }
     
     
     
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-//        let widthSize = collectionView.frame.size.width / 2
-//        return CGSize(width: widthSize, height: widthSize)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 5
-//    }
+    //    func collectionView(_ collectionView: UICollectionView,
+    //                        layout collectionViewLayout: UICollectionViewLayout,
+    //                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    //        let widthSize = collectionView.frame.size.width / 2
+    //        return CGSize(width: widthSize, height: widthSize)
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView,
+    //                        layout collectionViewLayout: UICollectionViewLayout,
+    //                        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    //        return 5
+    //    }
     
-//
-//    func collectionView(_ collectionView: UICollectionView, layout
-//        collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 5
-//    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout
+    //        collectionViewLayout: UICollectionViewLayout,
+    //                        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    //        return 5
+    //    }
     
     
     func getNotifications()  {  // unreade notification count
@@ -303,7 +300,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
         let rawDataStr: String = "data={\"email\":\"\(userName)\",\"password\":\"\(userPassword)\"}" as String
         print("\n comment param: ",rawDataStr)
         self.PostAPIWithParam(apiName: "get_notifications", paramStr: rawDataStr as NSString){  ResDictionary in
-//            print("\n Result Dictionary: ",ResDictionary)
+            //            print("\n Result Dictionary: ",ResDictionary)
             //            let statusVal = ResDictionary["status"] as? String
             let statusVal = ResDictionary["status"] as? String
             
@@ -311,7 +308,7 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
                 self.NotifDic = (ResDictionary["data"] as! NSArray) as! [Any]
                 DispatchQueue.main.async {
                     
-//                    print("\n \n ## unread notification count \(ResDictionary["unread_count"] as! NSInteger)")
+                    //                    print("\n \n ## unread notification count \(ResDictionary["unread_count"] as! NSInteger)")
                     let badgeCount: Int = ResDictionary["unread_count"]! as! Int
                     self.tabBarController?.tabBar.items?[3].badgeValue = "\(badgeCount)"
                     
@@ -333,24 +330,24 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
             let statusVal = ResDictionary["status"] as? String
             
             if statusVal == "success"{
-    //                self.dashboardCountDic = (ResDictionary["data"] as! NSArray) as! [Any]
-                    DispatchQueue.main.async {
-//                    self.menuCountArr.insert((ResDictionary["pending_quiz"] as? String)!, at: 0)
-                        
+                //                self.dashboardCountDic = (ResDictionary["data"] as! NSArray) as! [Any]
+                DispatchQueue.main.async {
+                    //                    self.menuCountArr.insert((ResDictionary["pending_quiz"] as? String)!, at: 0)
+                    
                     self.menuCountArr[0] = (ResDictionary["pending_quiz"] as? String)!
-                        
-//                    self.menuCountArr.insert((ResDictionary["pending_assignments"] as? String)!, at: 1)
-                        
+                    
+                    //                    self.menuCountArr.insert((ResDictionary["pending_assignments"] as? String)!, at: 1)
+                    
                     self.menuCountArr[1] = (ResDictionary["pending_assignments"] as? String)!
-                        
-//                    self.menuCountArr.insert((ResDictionary["rank"] as? String)!, at: 2)
-                        
+                    
+                    //                    self.menuCountArr.insert((ResDictionary["rank"] as? String)!, at: 2)
+                    
                     self.menuCountArr[2] = (ResDictionary["rank"] as? String)!
-                        
-//                    self.menuCountArr.insert((ResDictionary["feed_count"] as? String)!, at: 3)
+                    
+                    //                    self.menuCountArr.insert((ResDictionary["feed_count"] as? String)!, at: 3)
                     
                     self.menuCountArr[3] = (ResDictionary["pending_application"] as? String)!
-                        
+                    
                     print("\n \n menu count array \(self.menuCountArr)")
                     self.menuCollectionView.reloadData()
                 }
@@ -385,52 +382,52 @@ class DashboardViewController: UIViewController,UIWebViewDelegate,UIGestureRecog
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-//                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        //                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {
                     print(error)
-//                    self.presentAlertWithOkButton(withTitle: "Server Error!", message: "Please try again")
+                    //                    self.presentAlertWithOkButton(withTitle: "Server Error!", message: "Please try again")
                 }
             }
         })
         dataTask.resume()
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
     @IBAction func boostNowButtonTouch(_ sender: Any) {
-
-//        Crashlytics.sharedInstance().crash()
         
-//        self.presentAlertWithOkButton(withTitle: "Boost now!!", message: "(This feature is coming soon)")
+        //        Crashlytics.sharedInstance().crash()
+        
+        //        self.presentAlertWithOkButton(withTitle: "Boost now!!", message: "(This feature is coming soon)")
         
         let popOverVC = UIStoryboard (name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoostMeProgressSID") as! BoostMeProgrssViewViewController
-//        self.view.addSubview(popOverVC.view)
+        //        self.view.addSubview(popOverVC.view)
         UIApplication.shared.keyWindow?.addSubview(popOverVC.view)
         popOverVC.didMove(toParent: self)
-
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MeditatinViewControllerSID") as! MeditationViewController
-//        self.present(vc, animated: true, completion: nil)
+        
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MeditatinViewControllerSID") as! MeditationViewController
+        //        self.present(vc, animated: true, completion: nil)
         
         
-//        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "MeditatinViewControllerSID") as! MeditationViewController
-//        let navController = UINavigationController(rootViewController: VC1)
-//        self.present(navController, animated:true, completion: nil)
+        //        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "MeditatinViewControllerSID") as! MeditationViewController
+        //        let navController = UINavigationController(rootViewController: VC1)
+        //        self.present(navController, animated:true, completion: nil)
         
     }
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

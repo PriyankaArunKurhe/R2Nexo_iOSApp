@@ -200,12 +200,13 @@ class SignInViewController: UIViewController,UIScrollViewDelegate, MFMailCompose
                         }else {
                             DispatchQueue.main.async {
                                 self.activityProgress.stopAnimating()
+                                self.showToast(message: (resDictionary["message"] as? String)!)
+                                self.presentAlertWithOkButton(withTitle: "Error in Login!", message: (resDictionary["message"] as? String)!)
                             }
-                            self.showToast(message: (resDictionary["message"] as? String)!)
-                            self.presentAlertWithOkButton(withTitle: "Error in Login!", message: (resDictionary["message"] as? String)!)
+                         
                         }
                     }
-                }else{
+                } else {
                     DispatchQueue.main.async {
                         self.activityProgress.stopAnimating()
                     }

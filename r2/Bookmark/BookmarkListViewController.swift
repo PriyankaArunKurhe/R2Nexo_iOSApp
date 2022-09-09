@@ -362,7 +362,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
             }
             if dictObj["is_liked"] as! String == "1"{
                 textFeedCell.FeedLikeButton.setImage(UIImage (named: "btn_like_filled"), for: .normal)
-            }else{
+            } else {
                 textFeedCell.FeedLikeButton.setImage(UIImage (named: "btn_like_unfilled"), for: .normal)
             }
             
@@ -430,7 +430,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                 //                    let postCreatorImageURL = "\(Constants.r2_baseURL)/\(dictObj["creator_img"] as! String)"
                 //                    cell.feedPostedByProfilePic.downloadedFrom(url: URL(string: postCreatorImageURL)!)
                 
-            }else{
+            } else {
                 //                    cell.FeedPostedVideoView.isHidden = true
                 cell.feedPostedPicImageView.image = UIImage(named:"blank_square")
             }
@@ -518,7 +518,7 @@ class BookmarkListViewController: UIViewController,UITableViewDelegate,UITableVi
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
                         
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

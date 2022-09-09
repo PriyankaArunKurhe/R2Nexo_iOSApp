@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-import QuartzCore
+// QuartzCore
 
 extension UIImageView {
     func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {

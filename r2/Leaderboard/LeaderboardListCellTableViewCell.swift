@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import QuartzCore
+//import QuartzCore
 
 class LeaderboardListCellTableViewCell: UITableViewCell {
     

@@ -40,7 +40,6 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.view.addSubview(activityProgress)
         
         quizButton.titleLabel?.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size))
-        
         assignmentButton.titleLabel?.font = UIFont(name: Constants.r2_semi_bold_font, size: CGFloat(Constants.r2_font_size))
         
         
@@ -489,7 +488,7 @@ class QuizViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

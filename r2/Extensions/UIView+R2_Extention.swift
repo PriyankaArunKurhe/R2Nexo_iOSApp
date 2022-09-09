@@ -24,7 +24,6 @@ extension UIView {
         self.layer.add(animation, forKey: nil)
     }
     
-    
     func addTopBorderWithColor(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
@@ -61,8 +60,6 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
     }
     
-  
-    
     // for shadow
     func dropShadow() {
         
@@ -82,10 +79,9 @@ extension UIView {
     func fadeTransition(_ duration:CFTimeInterval) {
         let animation = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name:
-                                                            CAMediaTimingFunctionName.easeInEaseOut)
+                            CAMediaTimingFunctionName.easeInEaseOut)
         animation.type = CATransitionType.fade
         animation.duration = duration
        // layer.add(animation, forKey: kCATransitionFade)
     }
-    
 }

@@ -78,7 +78,7 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
             let statusVal = ResDictionary["status"] as? String
             DispatchQueue.main.async {
                 if statusVal == "success"{
-                    self.profileDict = ResDictionary["data"] as! NSDictionary
+                    self.profileDict = (ResDictionary["data"] as! NSDictionary)
                     print("\n \n PPP ",self.profileDict["student_first_name"] as? String as Any)
                     let studFirstName = self.profileDict!["student_first_name"] as? String
                     let studLastName = self.profileDict!["student_last_name"] as? String
@@ -117,7 +117,7 @@ class ProfileInfoViewController: UIViewController,UITableViewDelegate, UITableVi
                 do{
                     if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                         convertedJsonDictResponse = convertedJsonIntoDict.object(forKey: apiName) as? NSDictionary
-                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse)
+                        print("\n \n response data convertedJsonDictResponse",convertedJsonDictResponse as Any)
                         callback(convertedJsonDictResponse)
                     }
                 } catch let error as NSError {

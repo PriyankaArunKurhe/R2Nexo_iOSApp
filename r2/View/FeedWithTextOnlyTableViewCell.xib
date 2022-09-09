@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,28 +12,28 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1ph-Kf-ELX" id="80P-8o-dCt">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="306.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjp-dK-dwI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="302.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="303"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signInLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KRe-7O-2tz">
-                        <rect key="frame" x="8" y="13" width="0.0" height="50"/>
+                        <rect key="frame" x="16" y="16" width="0.0" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" id="EG6-3K-SjB"/>
                             <constraint firstAttribute="height" constant="50" id="KyQ-Wt-4h2"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thomas S Mansoon" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5n-Ev-Qls">
-                        <rect key="frame" x="8" y="6" width="319" height="20.5"/>
+                        <rect key="frame" x="16" y="9" width="303" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-mt-Yln">
-                        <rect key="frame" x="8" y="31.5" width="259" height="20"/>
+                        <rect key="frame" x="16" y="34.5" width="243" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Wcb-Ji-QPZ"/>
                         </constraints>
@@ -45,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwv-11-Nxr">
-                        <rect key="frame" x="8" y="61.5" width="362" height="80"/>
+                        <rect key="frame" x="16" y="64.5" width="354" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="3Ib-Mq-4Kc"/>
                         </constraints>
@@ -60,14 +57,14 @@ Hope it helps</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="bzT-OU-B4A">
-                        <rect key="frame" x="-2" y="188.5" width="379" height="60"/>
+                        <rect key="frame" x="6" y="186" width="363" height="60"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="kLm-sm-4n0"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuL-Zh-0pd">
-                        <rect key="frame" x="8" y="248.5" width="359" height="50"/>
+                        <rect key="frame" x="16" y="246" width="343" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rlu-GT-Lqn">
                                 <rect key="frame" x="-10" y="0.0" width="50" height="50"/>
@@ -78,7 +75,7 @@ Hope it helps</string>
                                 <state key="normal" image="btn_like_unfilled"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pC9-Al-7dh">
-                                <rect key="frame" x="70.5" y="0.5" width="50" height="50"/>
+                                <rect key="frame" x="70.5" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bux-wE-dhT"/>
                                     <constraint firstAttribute="width" constant="50" id="kAA-91-TTt"/>
@@ -86,21 +83,21 @@ Hope it helps</string>
                                 <state key="normal" image="btn_comment_unfilled"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-9J-rDt">
-                                <rect key="frame" x="40" y="15" width="10.5" height="21"/>
+                                <rect key="frame" x="40" y="14.5" width="10.5" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-1D-ST3">
-                                <rect key="frame" x="125.5" y="15" width="11" height="21"/>
+                                <rect key="frame" x="125.5" y="14.5" width="11" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-Au-6Pp">
-                                <rect key="frame" x="309" y="0.5" width="50" height="50"/>
+                                <rect key="frame" x="293" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0WV-3y-HFm"/>
                                     <constraint firstAttribute="width" constant="50" id="yMb-AR-NHL"/>
@@ -123,12 +120,12 @@ Hope it helps</string>
                             <constraint firstItem="4fa-1D-ST3" firstAttribute="leading" secondItem="pC9-Al-7dh" secondAttribute="trailing" constant="5" id="twW-QK-zz7"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r29-K8-n6i">
-                        <rect key="frame" x="275" y="141.5" width="87" height="47"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r29-K8-n6i">
+                        <rect key="frame" x="267" y="144.5" width="87" height="41.5"/>
                         <state key="normal" title="Read more..."/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ug5-mQ-UqP">
-                        <rect key="frame" x="317" y="-2" width="50" height="50"/>
+                        <rect key="frame" x="309" y="1" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="PuM-46-kCz"/>
                             <constraint firstAttribute="height" constant="50" id="eyM-YD-OwK"/>
@@ -185,11 +182,11 @@ Hope it helps</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btn_bookmark_unfilled" width="30" height="47"/>
-        <image name="btn_comment_unfilled" width="25" height="23"/>
-        <image name="btn_like_unfilled" width="22" height="23"/>
-        <image name="btn_share" width="17" height="23"/>
-        <image name="default_image" width="360" height="159"/>
-        <image name="signInLogo" width="198" height="100"/>
+        <image name="btn_bookmark_unfilled" width="30.5" height="47"/>
+        <image name="btn_comment_unfilled" width="25" height="23.5"/>
+        <image name="btn_like_unfilled" width="22" height="23.5"/>
+        <image name="btn_share" width="17.5" height="23.5"/>
+        <image name="default_image" width="375" height="375"/>
+        <image name="signInLogo" width="198.5" height="100.5"/>
     </resources>
 </document>
